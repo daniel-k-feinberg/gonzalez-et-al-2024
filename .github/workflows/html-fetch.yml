@@ -1,0 +1,30 @@
+on:
+  workflow_dispatch:
+  #schedule:
+  #  - cron:  '36 15 * * *'
+  #push:
+  #  branches:
+  #   - main
+
+name: Fetch HTML
+
+jobs:
+  fetch-html:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository with submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+          token: ${{ secrets.SUBMODULE_TOKEN }}
+
+      - name: Update submodule & cp html
+        run: git submodule update --init --recursive --remote && cp -f ./internal-files/src/manuscript-gonzalez-et-al-2024.html ./gonzalez-et-al-2024.html
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add *.html
+          git commit -m "Fetch HTML" || echo "No changes to commit"
+          git push
