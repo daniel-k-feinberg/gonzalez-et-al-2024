@@ -3194,9 +3194,9 @@ vertical-align: -.125em;
  $ region              : chr [1:36485] &quot;ARECIBO&quot; &quot;ARECIBO&quot; &quot;ARECIBO&quot; &quot;ARECIBO&quot; ...
  $ district            : chr [1:36485] &quot;ARECIBO&quot; &quot;ARECIBO&quot; &quot;ARECIBO&quot; &quot;ARECIBO&quot; ...
  $ grade               : Ord.factor w/ 6 levels &quot;Grade 7&quot;&lt;&quot;Grade 8&quot;&lt;..: 2 2 2 2 2 2 1 1 1 2 ...
- $ adult_ss            : num [1:36485] 1 1 1 1 1 1 1 1 1 1 ...
- $ peer_ss             : num [1:36485] 1 1 1 1 1 1 1 0 1 1 ...
- $ teacher_ss          : num [1:36485] 1 1 0 1 0 1 0 0 1 1 ...
+ $ adult_ss            : Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 2 2 2 2 2 2 2 2 2 2 ...
+ $ peer_ss             : Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 2 2 2 2 2 2 2 1 2 2 ...
+ $ teacher_ss          : Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 2 2 1 2 1 2 1 1 2 2 ...
  $ s1                  : num [1:36485] 0 1 0 0 0 0 0 0 0 0 ...
  $ s2                  : num [1:36485] 0 0 0 0 0 0 0 1 0 0 ...
  $ s3                  : num [1:36485] 2 0 1 0 0 0 4 0 1 1 ...
@@ -3221,48 +3221,48 @@ vertical-align: -.125em;
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ordinalRegres_substanceUse</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
-<pre><code>    region            district              grade         adult_ss    
- Length:36485       Length:36485       Grade 7 :6754   Min.   :0.000  
- Class :character   Class :character   Grade 8 :6620   1st Qu.:1.000  
- Mode  :character   Mode  :character   Grade 9 :5807   Median :1.000  
-                                       Grade 10:5886   Mean   :0.949  
-                                       Grade 11:6043   3rd Qu.:1.000  
-                                       Grade 12:5375   Max.   :1.000  
-    peer_ss         teacher_ss           s1               s2        
- Min.   :0.0000   Min.   :0.0000   Min.   :0.0000   Min.   :0.0000  
- 1st Qu.:1.0000   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000  
- Median :1.0000   Median :1.0000   Median :0.0000   Median :0.0000  
- Mean   :0.8747   Mean   :0.5625   Mean   :0.3649   Mean   :0.4652  
- 3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:0.0000   3rd Qu.:1.0000  
- Max.   :1.0000   Max.   :1.0000   Max.   :4.0000   Max.   :4.0000  
-       s3               s4              s5               s6      
- Min.   :0.0000   Min.   :0.000   Min.   :0.0000   Min.   :0.00  
- 1st Qu.:0.0000   1st Qu.:0.000   1st Qu.:0.0000   1st Qu.:0.00  
- Median :1.0000   Median :0.000   Median :0.0000   Median :0.00  
- Mean   :0.9974   Mean   :0.577   Mean   :0.4934   Mean   :0.52  
- 3rd Qu.:1.0000   3rd Qu.:1.000   3rd Qu.:1.0000   3rd Qu.:1.00  
- Max.   :4.0000   Max.   :4.000   Max.   :4.0000   Max.   :4.00  
-       s7               s8               s9              s10        
- Min.   :0.0000   Min.   :0.0000   Min.   :0.0000   Min.   :0.0000  
- 1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000  
- Median :0.0000   Median :0.0000   Median :0.0000   Median :0.0000  
- Mean   :0.2277   Mean   :0.7088   Mean   :0.7415   Mean   :0.2858  
- 3rd Qu.:0.0000   3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:0.0000  
- Max.   :4.0000   Max.   :4.0000   Max.   :4.0000   Max.   :4.0000  
-      s11              s12       substanceUse    gender           id           
- Min.   :0.0000   Min.   :0.00   None:34075   Male  :17969   Length:36485      
- 1st Qu.:0.0000   1st Qu.:0.00   Low : 1741   Female:18516   Class :character  
- Median :0.0000   Median :1.00   High:  669                  Mode  :character  
- Mean   :0.5383   Mean   :1.66                                                 
- 3rd Qu.:1.0000   3rd Qu.:3.00                                                 
- Max.   :4.0000   Max.   :4.00                                                 
- has_missing       ptsd_total         social_support_total
- Mode :logical   Min.   : 0.00   0 of 3 Endorsed:  767    
- FALSE:36485     1st Qu.: 3.00   1 of 3 Endorsed: 3201    
-                 Median : 6.00   2 of 3 Endorsed:13690    
-                 Mean   : 7.58   3 of 3 Endorsed:18827    
-                 3rd Qu.:11.00                            
-                 Max.   :48.00                            </code></pre>
+<pre><code>    region            district              grade      adult_ss    peer_ss    
+ Length:36485       Length:36485       Grade 7 :6754   No : 1859   No : 4570  
+ Class :character   Class :character   Grade 8 :6620   Yes:34626   Yes:31915  
+ Mode  :character   Mode  :character   Grade 9 :5807                          
+                                       Grade 10:5886                          
+                                       Grade 11:6043                          
+                                       Grade 12:5375                          
+ teacher_ss        s1               s2               s3               s4       
+ No :15964   Min.   :0.0000   Min.   :0.0000   Min.   :0.0000   Min.   :0.000  
+ Yes:20521   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.000  
+             Median :0.0000   Median :0.0000   Median :1.0000   Median :0.000  
+             Mean   :0.3649   Mean   :0.4652   Mean   :0.9974   Mean   :0.577  
+             3rd Qu.:0.0000   3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:1.000  
+             Max.   :4.0000   Max.   :4.0000   Max.   :4.0000   Max.   :4.000  
+       s5               s6             s7               s8        
+ Min.   :0.0000   Min.   :0.00   Min.   :0.0000   Min.   :0.0000  
+ 1st Qu.:0.0000   1st Qu.:0.00   1st Qu.:0.0000   1st Qu.:0.0000  
+ Median :0.0000   Median :0.00   Median :0.0000   Median :0.0000  
+ Mean   :0.4934   Mean   :0.52   Mean   :0.2277   Mean   :0.7088  
+ 3rd Qu.:1.0000   3rd Qu.:1.00   3rd Qu.:0.0000   3rd Qu.:1.0000  
+ Max.   :4.0000   Max.   :4.00   Max.   :4.0000   Max.   :4.0000  
+       s9              s10              s11              s12       substanceUse
+ Min.   :0.0000   Min.   :0.0000   Min.   :0.0000   Min.   :0.00   None:34075  
+ 1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.00   Low : 1741  
+ Median :0.0000   Median :0.0000   Median :0.0000   Median :1.00   High:  669  
+ Mean   :0.7415   Mean   :0.2858   Mean   :0.5383   Mean   :1.66               
+ 3rd Qu.:1.0000   3rd Qu.:0.0000   3rd Qu.:1.0000   3rd Qu.:3.00               
+ Max.   :4.0000   Max.   :4.0000   Max.   :4.0000   Max.   :4.00               
+    gender           id            has_missing       ptsd_total   
+ Male  :17969   Length:36485       Mode :logical   Min.   : 0.00  
+ Female:18516   Class :character   FALSE:36485     1st Qu.: 3.00  
+                Mode  :character                   Median : 6.00  
+                                                   Mean   : 7.58  
+                                                   3rd Qu.:11.00  
+                                                   Max.   :48.00  
+      social_support_total
+ 0 of 3 Endorsed:  767    
+ 1 of 3 Endorsed: 3201    
+ 2 of 3 Endorsed:13690    
+ 3 of 3 Endorsed:18827    
+                          
+                          </code></pre>
 </div>
 </div>
 </section><section id="verify-that-dependent-variable-substanceuse-is-ordered-correctly" class="level2"><h2 class="anchored" data-anchor-id="verify-that-dependent-variable-substanceuse-is-ordered-correctly">Verify that dependent variable (substanceUse) is ordered correctly</h2>
@@ -3364,43 +3364,51 @@ substanceUse Grade 7 Grade 8 Grade 9 Grade 10 Grade 11 Grade 12
 <span>                <span class="va">substanceUse</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">tbl_summary</span><span class="op">(</span>by <span class="op">=</span> <span class="va">substanceUse</span>,</span>
 <span>              statistic <span class="op">=</span> <span class="va">ptsd_total</span> <span class="op">~</span> <span class="st">&quot;{mean} ({sd})&quot;</span>,</span>
-<span>              missing <span class="op">=</span> <span class="st">&quot;always&quot;</span>,</span>
 <span>              digits <span class="op">=</span> <span class="fu">all_continuous</span><span class="op">(</span><span class="op">)</span> <span class="op">~</span> <span class="fl">1</span>,</span>
-<span>              <span class="co"># missing = &quot;no&quot;,</span></span>
+<span>              missing <span class="op">=</span> <span class="st">&quot;always&quot;</span>,</span>
 <span>              missing_text <span class="op">=</span> <span class="st">&quot;Missing values&quot;</span>,</span>
-<span>              type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">region</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
-<span>                          <span class="va">grade</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
-<span>                          <span class="va">gender</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
-<span>                          <span class="va">ptsd_total</span> <span class="op">~</span> <span class="st">&quot;continuous&quot;</span>,</span>
-<span>                          <span class="va">social_support_total</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
-<span>                          <span class="va">adult_ss</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
-<span>                          <span class="va">peer_ss</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
-<span>                          <span class="va">teacher_ss</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span><span class="op">)</span>,</span>
+<span>              type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>                <span class="va">region</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
+<span>                <span class="va">grade</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
+<span>                <span class="va">gender</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
+<span>                <span class="va">ptsd_total</span> <span class="op">~</span> <span class="st">&quot;continuous&quot;</span>,</span>
+<span>                <span class="va">social_support_total</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
+<span>                <span class="va">adult_ss</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
+<span>                <span class="va">peer_ss</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
+<span>                <span class="va">teacher_ss</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span><span class="op">)</span>,</span>
+<span>              label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>                region <span class="op">=</span> <span class="st">&quot;Region&quot;</span>,</span>
+<span>                grade <span class="op">=</span> <span class="st">&quot;Grade&quot;</span>,</span>
+<span>                gender <span class="op">=</span> <span class="st">&quot;Gender&quot;</span>,</span>
+<span>                ptsd_total <span class="op">=</span> <span class="st">&quot;PTSD Total&quot;</span>,</span>
+<span>                social_support_total <span class="op">=</span> <span class="st">&quot;Social Support Total&quot;</span>,</span>
+<span>                adult_ss <span class="op">=</span> <span class="st">&quot;Adult SS&quot;</span>,</span>
+<span>                peer_ss <span class="op">=</span> <span class="st">&quot;Peer SS&quot;</span>,</span>
+<span>                teacher_ss <span class="op">=</span> <span class="st">&quot;Teacher SS&quot;</span><span class="op">)</span>,</span>
 <span>              sort <span class="op">=</span> <span class="fu">everything</span><span class="op">(</span><span class="op">)</span> <span class="op">~</span> <span class="st">&quot;frequency&quot;</span>,</span>
-<span>              percent <span class="op">=</span> <span class="st">&quot;cell&quot;</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>              percent <span class="op">=</span> <span class="st">&quot;column&quot;</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">add_overall</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">add_n</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">bold_labels</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">italicize_levels</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">modify_spanning_header</span><span class="op">(</span><span class="fu">all_stat_cols</span><span class="op">(</span><span class="op">)</span> <span class="op">~</span> <span class="st">&quot;**Substance Use Level**&quot;</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">tbl_summary_all</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
-<div id="zqumhnhfgz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#zqumhnhfgz table {
+<div id="hqzknhlhhl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hqzknhlhhl table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#zqumhnhfgz thead, #zqumhnhfgz tbody, #zqumhnhfgz tfoot, #zqumhnhfgz tr, #zqumhnhfgz td, #zqumhnhfgz th {
+#hqzknhlhhl thead, #hqzknhlhhl tbody, #hqzknhlhhl tfoot, #hqzknhlhhl tr, #hqzknhlhhl td, #hqzknhlhhl th {
 border-style: none;
 }
-#zqumhnhfgz p {
+#hqzknhlhhl p {
 margin: 0;
 padding: 0;
 }
-#zqumhnhfgz .gt_table {
+#hqzknhlhhl .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -3425,11 +3433,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#zqumhnhfgz .gt_caption {
+#hqzknhlhhl .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#zqumhnhfgz .gt_title {
+#hqzknhlhhl .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -3440,7 +3448,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#zqumhnhfgz .gt_subtitle {
+#hqzknhlhhl .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -3451,7 +3459,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#zqumhnhfgz .gt_heading {
+#hqzknhlhhl .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -3462,12 +3470,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#zqumhnhfgz .gt_bottom_border {
+#hqzknhlhhl .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#zqumhnhfgz .gt_col_headings {
+#hqzknhlhhl .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -3481,7 +3489,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#zqumhnhfgz .gt_col_heading {
+#hqzknhlhhl .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3500,7 +3508,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#zqumhnhfgz .gt_column_spanner_outer {
+#hqzknhlhhl .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3511,13 +3519,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#zqumhnhfgz .gt_column_spanner_outer:first-child {
+#hqzknhlhhl .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#zqumhnhfgz .gt_column_spanner_outer:last-child {
+#hqzknhlhhl .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#zqumhnhfgz .gt_column_spanner {
+#hqzknhlhhl .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -3528,10 +3536,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#zqumhnhfgz .gt_spanner_row {
+#hqzknhlhhl .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#zqumhnhfgz .gt_group_heading {
+#hqzknhlhhl .gt_group_heading {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -3556,7 +3564,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#zqumhnhfgz .gt_empty_group_heading {
+#hqzknhlhhl .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -3570,13 +3578,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#zqumhnhfgz .gt_from_md > :first-child {
+#hqzknhlhhl .gt_from_md > :first-child {
 margin-top: 0;
 }
-#zqumhnhfgz .gt_from_md > :last-child {
+#hqzknhlhhl .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#zqumhnhfgz .gt_row {
+#hqzknhlhhl .gt_row {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -3594,7 +3602,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#zqumhnhfgz .gt_stub {
+#hqzknhlhhl .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3606,7 +3614,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#zqumhnhfgz .gt_stub_row_group {
+#hqzknhlhhl .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3619,13 +3627,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#zqumhnhfgz .gt_row_group_first td {
+#hqzknhlhhl .gt_row_group_first td {
 border-top-width: 2px;
 }
-#zqumhnhfgz .gt_row_group_first th {
+#hqzknhlhhl .gt_row_group_first th {
 border-top-width: 2px;
 }
-#zqumhnhfgz .gt_summary_row {
+#hqzknhlhhl .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -3634,14 +3642,14 @@ padding-bottom: 1px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#zqumhnhfgz .gt_first_summary_row {
+#hqzknhlhhl .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#zqumhnhfgz .gt_first_summary_row.thick {
+#hqzknhlhhl .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#zqumhnhfgz .gt_last_summary_row {
+#hqzknhlhhl .gt_last_summary_row {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -3650,7 +3658,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#zqumhnhfgz .gt_grand_summary_row {
+#hqzknhlhhl .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -3659,7 +3667,7 @@ padding-bottom: 1px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#zqumhnhfgz .gt_first_grand_summary_row {
+#hqzknhlhhl .gt_first_grand_summary_row {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -3668,7 +3676,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#zqumhnhfgz .gt_last_grand_summary_row_top {
+#hqzknhlhhl .gt_last_grand_summary_row_top {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -3677,10 +3685,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#zqumhnhfgz .gt_striped {
+#hqzknhlhhl .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#zqumhnhfgz .gt_table_body {
+#hqzknhlhhl .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -3688,7 +3696,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#zqumhnhfgz .gt_footnotes {
+#hqzknhlhhl .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -3701,7 +3709,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#zqumhnhfgz .gt_footnote {
+#hqzknhlhhl .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 1px;
@@ -3709,7 +3717,7 @@ padding-bottom: 1px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#zqumhnhfgz .gt_sourcenotes {
+#hqzknhlhhl .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -3722,57 +3730,57 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#zqumhnhfgz .gt_sourcenote {
+#hqzknhlhhl .gt_sourcenote {
 font-size: 90%;
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#zqumhnhfgz .gt_left {
+#hqzknhlhhl .gt_left {
 text-align: left;
 }
-#zqumhnhfgz .gt_center {
+#hqzknhlhhl .gt_center {
 text-align: center;
 }
-#zqumhnhfgz .gt_right {
+#hqzknhlhhl .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#zqumhnhfgz .gt_font_normal {
+#hqzknhlhhl .gt_font_normal {
 font-weight: normal;
 }
-#zqumhnhfgz .gt_font_bold {
+#hqzknhlhhl .gt_font_bold {
 font-weight: bold;
 }
-#zqumhnhfgz .gt_font_italic {
+#hqzknhlhhl .gt_font_italic {
 font-style: italic;
 }
-#zqumhnhfgz .gt_super {
+#hqzknhlhhl .gt_super {
 font-size: 65%;
 }
-#zqumhnhfgz .gt_footnote_marks {
+#hqzknhlhhl .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#zqumhnhfgz .gt_asterisk {
+#hqzknhlhhl .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#zqumhnhfgz .gt_indent_1 {
+#hqzknhlhhl .gt_indent_1 {
 text-indent: 5px;
 }
-#zqumhnhfgz .gt_indent_2 {
+#hqzknhlhhl .gt_indent_2 {
 text-indent: 10px;
 }
-#zqumhnhfgz .gt_indent_3 {
+#hqzknhlhhl .gt_indent_3 {
 text-indent: 15px;
 }
-#zqumhnhfgz .gt_indent_4 {
+#hqzknhlhhl .gt_indent_4 {
 text-indent: 20px;
 }
-#zqumhnhfgz .gt_indent_5 {
+#hqzknhlhhl .gt_indent_5 {
 text-indent: 25px;
 }
 </style>
@@ -3797,7 +3805,7 @@ text-indent: 25px;
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-weight: bold">region, n (%)</td>
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Region, n (%)</td>
 <td class="gt_row gt_center" headers="n">55,398</td>
 <td class="gt_row gt_center" headers="stat_0"></td>
 <td class="gt_row gt_center" headers="stat_1"></td>
@@ -3805,63 +3813,63 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3"></td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    PONCE</td>
+<td class="gt_row gt_left" headers="label">    PONCE</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">10,983 (20)</td>
-<td class="gt_row gt_center" headers="stat_1">10,159 (18)</td>
-<td class="gt_row gt_center" headers="stat_2">578 (1.0)</td>
-<td class="gt_row gt_center" headers="stat_3">246 (0.4)</td>
+<td class="gt_row gt_center" headers="stat_1">10,159 (20)</td>
+<td class="gt_row gt_center" headers="stat_2">578 (20)</td>
+<td class="gt_row gt_center" headers="stat_3">246 (19)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    MAYAGUEZ</td>
+<td class="gt_row gt_left" headers="label">    MAYAGUEZ</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">10,206 (18)</td>
-<td class="gt_row gt_center" headers="stat_1">9,519 (17)</td>
-<td class="gt_row gt_center" headers="stat_2">486 (0.9)</td>
-<td class="gt_row gt_center" headers="stat_3">201 (0.4)</td>
+<td class="gt_row gt_center" headers="stat_1">9,519 (19)</td>
+<td class="gt_row gt_center" headers="stat_2">486 (17)</td>
+<td class="gt_row gt_center" headers="stat_3">201 (16)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    HUMACAO</td>
+<td class="gt_row gt_left" headers="label">    HUMACAO</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">8,702 (16)</td>
-<td class="gt_row gt_center" headers="stat_1">7,963 (14)</td>
-<td class="gt_row gt_center" headers="stat_2">489 (0.9)</td>
-<td class="gt_row gt_center" headers="stat_3">250 (0.5)</td>
+<td class="gt_row gt_center" headers="stat_1">7,963 (16)</td>
+<td class="gt_row gt_center" headers="stat_2">489 (17)</td>
+<td class="gt_row gt_center" headers="stat_3">250 (19)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    SAN JUAN</td>
+<td class="gt_row gt_left" headers="label">    SAN JUAN</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">7,808 (14)</td>
-<td class="gt_row gt_center" headers="stat_1">7,145 (13)</td>
-<td class="gt_row gt_center" headers="stat_2">425 (0.8)</td>
-<td class="gt_row gt_center" headers="stat_3">238 (0.4)</td>
+<td class="gt_row gt_center" headers="stat_1">7,145 (14)</td>
+<td class="gt_row gt_center" headers="stat_2">425 (15)</td>
+<td class="gt_row gt_center" headers="stat_3">238 (18)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    BAYAMON</td>
+<td class="gt_row gt_left" headers="label">    BAYAMON</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">7,614 (14)</td>
-<td class="gt_row gt_center" headers="stat_1">7,125 (13)</td>
-<td class="gt_row gt_center" headers="stat_2">353 (0.6)</td>
-<td class="gt_row gt_center" headers="stat_3">136 (0.2)</td>
+<td class="gt_row gt_center" headers="stat_1">7,125 (14)</td>
+<td class="gt_row gt_center" headers="stat_2">353 (12)</td>
+<td class="gt_row gt_center" headers="stat_3">136 (11)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    CAGUAS</td>
+<td class="gt_row gt_left" headers="label">    CAGUAS</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">7,140 (13)</td>
-<td class="gt_row gt_center" headers="stat_1">6,529 (12)</td>
-<td class="gt_row gt_center" headers="stat_2">425 (0.8)</td>
-<td class="gt_row gt_center" headers="stat_3">186 (0.3)</td>
+<td class="gt_row gt_center" headers="stat_1">6,529 (13)</td>
+<td class="gt_row gt_center" headers="stat_2">425 (15)</td>
+<td class="gt_row gt_center" headers="stat_3">186 (14)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    ARECIBO</td>
+<td class="gt_row gt_left" headers="label">    ARECIBO</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">2,945 (5.3)</td>
-<td class="gt_row gt_center" headers="stat_1">2,798 (5.1)</td>
-<td class="gt_row gt_center" headers="stat_2">111 (0.2)</td>
-<td class="gt_row gt_center" headers="stat_3">36 (&lt;0.1)</td>
+<td class="gt_row gt_center" headers="stat_1">2,798 (5.5)</td>
+<td class="gt_row gt_center" headers="stat_2">111 (3.9)</td>
+<td class="gt_row gt_center" headers="stat_3">36 (2.8)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Missing values</td>
+<td class="gt_row gt_left" headers="label">    Missing values</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">0</td>
 <td class="gt_row gt_center" headers="stat_1">0</td>
@@ -3869,7 +3877,7 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3">0</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-weight: bold">grade, n (%)</td>
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Grade, n (%)</td>
 <td class="gt_row gt_center" headers="n">55,398</td>
 <td class="gt_row gt_center" headers="stat_0"></td>
 <td class="gt_row gt_center" headers="stat_1"></td>
@@ -3877,55 +3885,55 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3"></td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Grade 7</td>
+<td class="gt_row gt_left" headers="label">    Grade 7</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">11,098 (20)</td>
-<td class="gt_row gt_center" headers="stat_1">10,768 (19)</td>
-<td class="gt_row gt_center" headers="stat_2">219 (0.4)</td>
-<td class="gt_row gt_center" headers="stat_3">111 (0.2)</td>
+<td class="gt_row gt_center" headers="stat_1">10,768 (21)</td>
+<td class="gt_row gt_center" headers="stat_2">219 (7.6)</td>
+<td class="gt_row gt_center" headers="stat_3">111 (8.6)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Grade 8</td>
+<td class="gt_row gt_left" headers="label">    Grade 8</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">10,490 (19)</td>
-<td class="gt_row gt_center" headers="stat_1">10,089 (18)</td>
-<td class="gt_row gt_center" headers="stat_2">285 (0.5)</td>
-<td class="gt_row gt_center" headers="stat_3">116 (0.2)</td>
+<td class="gt_row gt_center" headers="stat_1">10,089 (20)</td>
+<td class="gt_row gt_center" headers="stat_2">285 (9.9)</td>
+<td class="gt_row gt_center" headers="stat_3">116 (9.0)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Grade 9</td>
+<td class="gt_row gt_left" headers="label">    Grade 9</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">8,834 (16)</td>
-<td class="gt_row gt_center" headers="stat_1">8,293 (15)</td>
-<td class="gt_row gt_center" headers="stat_2">383 (0.7)</td>
-<td class="gt_row gt_center" headers="stat_3">158 (0.3)</td>
+<td class="gt_row gt_center" headers="stat_1">8,293 (16)</td>
+<td class="gt_row gt_center" headers="stat_2">383 (13)</td>
+<td class="gt_row gt_center" headers="stat_3">158 (12)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Grade 10</td>
+<td class="gt_row gt_left" headers="label">    Grade 10</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">8,725 (16)</td>
-<td class="gt_row gt_center" headers="stat_1">7,996 (14)</td>
-<td class="gt_row gt_center" headers="stat_2">503 (0.9)</td>
-<td class="gt_row gt_center" headers="stat_3">226 (0.4)</td>
+<td class="gt_row gt_center" headers="stat_1">7,996 (16)</td>
+<td class="gt_row gt_center" headers="stat_2">503 (18)</td>
+<td class="gt_row gt_center" headers="stat_3">226 (17)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Grade 11</td>
+<td class="gt_row gt_left" headers="label">    Grade 11</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">8,660 (16)</td>
-<td class="gt_row gt_center" headers="stat_1">7,751 (14)</td>
-<td class="gt_row gt_center" headers="stat_2">638 (1.2)</td>
-<td class="gt_row gt_center" headers="stat_3">271 (0.5)</td>
+<td class="gt_row gt_center" headers="stat_1">7,751 (15)</td>
+<td class="gt_row gt_center" headers="stat_2">638 (22)</td>
+<td class="gt_row gt_center" headers="stat_3">271 (21)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Grade 12</td>
+<td class="gt_row gt_left" headers="label">    Grade 12</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">7,591 (14)</td>
-<td class="gt_row gt_center" headers="stat_1">6,341 (11)</td>
-<td class="gt_row gt_center" headers="stat_2">839 (1.5)</td>
-<td class="gt_row gt_center" headers="stat_3">411 (0.7)</td>
+<td class="gt_row gt_center" headers="stat_1">6,341 (12)</td>
+<td class="gt_row gt_center" headers="stat_2">839 (29)</td>
+<td class="gt_row gt_center" headers="stat_3">411 (32)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Missing values</td>
+<td class="gt_row gt_left" headers="label">    Missing values</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">0</td>
 <td class="gt_row gt_center" headers="stat_1">0</td>
@@ -3933,7 +3941,7 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3">0</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-weight: bold">gender, n (%)</td>
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Gender, n (%)</td>
 <td class="gt_row gt_center" headers="n">53,893</td>
 <td class="gt_row gt_center" headers="stat_0"></td>
 <td class="gt_row gt_center" headers="stat_1"></td>
@@ -3941,23 +3949,23 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3"></td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Female</td>
+<td class="gt_row gt_left" headers="label">    Female</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">27,780 (52)</td>
-<td class="gt_row gt_center" headers="stat_1">25,941 (48)</td>
-<td class="gt_row gt_center" headers="stat_2">1,384 (2.6)</td>
-<td class="gt_row gt_center" headers="stat_3">455 (0.8)</td>
+<td class="gt_row gt_center" headers="stat_1">25,941 (52)</td>
+<td class="gt_row gt_center" headers="stat_2">1,384 (50)</td>
+<td class="gt_row gt_center" headers="stat_3">455 (37)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Male</td>
+<td class="gt_row gt_left" headers="label">    Male</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">26,113 (48)</td>
-<td class="gt_row gt_center" headers="stat_1">23,980 (44)</td>
-<td class="gt_row gt_center" headers="stat_2">1,366 (2.5)</td>
-<td class="gt_row gt_center" headers="stat_3">767 (1.4)</td>
+<td class="gt_row gt_center" headers="stat_1">23,980 (48)</td>
+<td class="gt_row gt_center" headers="stat_2">1,366 (50)</td>
+<td class="gt_row gt_center" headers="stat_3">767 (63)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Missing values</td>
+<td class="gt_row gt_left" headers="label">    Missing values</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">1,505</td>
 <td class="gt_row gt_center" headers="stat_1">1,317</td>
@@ -3965,7 +3973,7 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3">71</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-weight: bold">ptsd_total, Mean (SD)</td>
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">PTSD Total, Mean (SD)</td>
 <td class="gt_row gt_center" headers="n">37,792</td>
 <td class="gt_row gt_center" headers="stat_0">7.6 (6.7)</td>
 <td class="gt_row gt_center" headers="stat_1">7.3 (6.5)</td>
@@ -3973,7 +3981,7 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3">13.0 (9.8)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Missing values</td>
+<td class="gt_row gt_left" headers="label">    Missing values</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">17,606</td>
 <td class="gt_row gt_center" headers="stat_1">15,988</td>
@@ -3981,7 +3989,7 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3">585</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-weight: bold">social_support_total, n (%)</td>
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Social Support Total, n (%)</td>
 <td class="gt_row gt_center" headers="n">54,661</td>
 <td class="gt_row gt_center" headers="stat_0"></td>
 <td class="gt_row gt_center" headers="stat_1"></td>
@@ -3989,39 +3997,39 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3"></td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    3 of 3 Endorsed</td>
+<td class="gt_row gt_left" headers="label">    3 of 3 Endorsed</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">26,999 (49)</td>
-<td class="gt_row gt_center" headers="stat_1">25,378 (46)</td>
-<td class="gt_row gt_center" headers="stat_2">1,186 (2.2)</td>
-<td class="gt_row gt_center" headers="stat_3">435 (0.8)</td>
+<td class="gt_row gt_center" headers="stat_1">25,378 (50)</td>
+<td class="gt_row gt_center" headers="stat_2">1,186 (42)</td>
+<td class="gt_row gt_center" headers="stat_3">435 (34)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    2 of 3 Endorsed</td>
+<td class="gt_row gt_left" headers="label">    2 of 3 Endorsed</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">21,116 (39)</td>
-<td class="gt_row gt_center" headers="stat_1">19,345 (35)</td>
-<td class="gt_row gt_center" headers="stat_2">1,207 (2.2)</td>
-<td class="gt_row gt_center" headers="stat_3">564 (1.0)</td>
+<td class="gt_row gt_center" headers="stat_1">19,345 (38)</td>
+<td class="gt_row gt_center" headers="stat_2">1,207 (43)</td>
+<td class="gt_row gt_center" headers="stat_3">564 (44)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    1 of 3 Endorsed</td>
+<td class="gt_row gt_left" headers="label">    1 of 3 Endorsed</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">5,265 (9.6)</td>
-<td class="gt_row gt_center" headers="stat_1">4,761 (8.7)</td>
-<td class="gt_row gt_center" headers="stat_2">321 (0.6)</td>
-<td class="gt_row gt_center" headers="stat_3">183 (0.3)</td>
+<td class="gt_row gt_center" headers="stat_1">4,761 (9.4)</td>
+<td class="gt_row gt_center" headers="stat_2">321 (11)</td>
+<td class="gt_row gt_center" headers="stat_3">183 (14)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    0 of 3 Endorsed</td>
+<td class="gt_row gt_left" headers="label">    0 of 3 Endorsed</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">1,281 (2.3)</td>
-<td class="gt_row gt_center" headers="stat_1">1,073 (2.0)</td>
-<td class="gt_row gt_center" headers="stat_2">111 (0.2)</td>
-<td class="gt_row gt_center" headers="stat_3">97 (0.2)</td>
+<td class="gt_row gt_center" headers="stat_1">1,073 (2.1)</td>
+<td class="gt_row gt_center" headers="stat_2">111 (3.9)</td>
+<td class="gt_row gt_center" headers="stat_3">97 (7.6)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Missing values</td>
+<td class="gt_row gt_left" headers="label">    Missing values</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">737</td>
 <td class="gt_row gt_center" headers="stat_1">681</td>
@@ -4029,7 +4037,7 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3">14</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-weight: bold">adult_ss, n (%)</td>
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Adult SS, n (%)</td>
 <td class="gt_row gt_center" headers="n">55,162</td>
 <td class="gt_row gt_center" headers="stat_0"></td>
 <td class="gt_row gt_center" headers="stat_1"></td>
@@ -4037,23 +4045,23 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3"></td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    1</td>
+<td class="gt_row gt_left" headers="label">    Yes</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">51,948 (94)</td>
-<td class="gt_row gt_center" headers="stat_1">48,387 (88)</td>
-<td class="gt_row gt_center" headers="stat_2">2,499 (4.5)</td>
-<td class="gt_row gt_center" headers="stat_3">1,062 (1.9)</td>
+<td class="gt_row gt_center" headers="stat_1">48,387 (95)</td>
+<td class="gt_row gt_center" headers="stat_2">2,499 (88)</td>
+<td class="gt_row gt_center" headers="stat_3">1,062 (83)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    0</td>
+<td class="gt_row gt_left" headers="label">    No</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">3,214 (5.8)</td>
-<td class="gt_row gt_center" headers="stat_1">2,640 (4.8)</td>
-<td class="gt_row gt_center" headers="stat_2">349 (0.6)</td>
-<td class="gt_row gt_center" headers="stat_3">225 (0.4)</td>
+<td class="gt_row gt_center" headers="stat_1">2,640 (5.2)</td>
+<td class="gt_row gt_center" headers="stat_2">349 (12)</td>
+<td class="gt_row gt_center" headers="stat_3">225 (17)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Missing values</td>
+<td class="gt_row gt_left" headers="label">    Missing values</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">236</td>
 <td class="gt_row gt_center" headers="stat_1">211</td>
@@ -4061,7 +4069,7 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3">6</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-weight: bold">peer_ss, n (%)</td>
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Peer SS, n (%)</td>
 <td class="gt_row gt_center" headers="n">55,080</td>
 <td class="gt_row gt_center" headers="stat_0"></td>
 <td class="gt_row gt_center" headers="stat_1"></td>
@@ -4069,23 +4077,23 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3"></td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    1</td>
+<td class="gt_row gt_left" headers="label">    Yes</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">47,570 (86)</td>
-<td class="gt_row gt_center" headers="stat_1">44,074 (80)</td>
-<td class="gt_row gt_center" headers="stat_2">2,456 (4.5)</td>
-<td class="gt_row gt_center" headers="stat_3">1,040 (1.9)</td>
+<td class="gt_row gt_center" headers="stat_1">44,074 (87)</td>
+<td class="gt_row gt_center" headers="stat_2">2,456 (86)</td>
+<td class="gt_row gt_center" headers="stat_3">1,040 (81)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    0</td>
+<td class="gt_row gt_left" headers="label">    No</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">7,510 (14)</td>
-<td class="gt_row gt_center" headers="stat_1">6,875 (12)</td>
-<td class="gt_row gt_center" headers="stat_2">390 (0.7)</td>
-<td class="gt_row gt_center" headers="stat_3">245 (0.4)</td>
+<td class="gt_row gt_center" headers="stat_1">6,875 (13)</td>
+<td class="gt_row gt_center" headers="stat_2">390 (14)</td>
+<td class="gt_row gt_center" headers="stat_3">245 (19)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Missing values</td>
+<td class="gt_row gt_left" headers="label">    Missing values</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">318</td>
 <td class="gt_row gt_center" headers="stat_1">289</td>
@@ -4093,7 +4101,7 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3">8</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-weight: bold">teacher_ss, n (%)</td>
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Teacher SS, n (%)</td>
 <td class="gt_row gt_center" headers="n">55,021</td>
 <td class="gt_row gt_center" headers="stat_0"></td>
 <td class="gt_row gt_center" headers="stat_1"></td>
@@ -4101,23 +4109,23 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3"></td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    1</td>
+<td class="gt_row gt_left" headers="label">    Yes</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">29,971 (54)</td>
-<td class="gt_row gt_center" headers="stat_1">28,067 (51)</td>
-<td class="gt_row gt_center" headers="stat_2">1,376 (2.5)</td>
-<td class="gt_row gt_center" headers="stat_3">528 (1.0)</td>
+<td class="gt_row gt_center" headers="stat_1">28,067 (55)</td>
+<td class="gt_row gt_center" headers="stat_2">1,376 (48)</td>
+<td class="gt_row gt_center" headers="stat_3">528 (41)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    0</td>
+<td class="gt_row gt_left" headers="label">    No</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">25,050 (46)</td>
-<td class="gt_row gt_center" headers="stat_1">22,819 (41)</td>
-<td class="gt_row gt_center" headers="stat_2">1,473 (2.7)</td>
-<td class="gt_row gt_center" headers="stat_3">758 (1.4)</td>
+<td class="gt_row gt_center" headers="stat_1">22,819 (45)</td>
+<td class="gt_row gt_center" headers="stat_2">1,473 (52)</td>
+<td class="gt_row gt_center" headers="stat_3">758 (59)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Missing values</td>
+<td class="gt_row gt_left" headers="label">    Missing values</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">377</td>
 <td class="gt_row gt_center" headers="stat_1">352</td>
@@ -4133,10 +4141,10 @@ text-indent: 25px;
 </div>
 </div>
 </div>
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co">#tbl_summary_all %&gt;% </span></span>
-<span><span class="co">#  as_flex_table() %&gt;% </span></span>
-<span><span class="co">#  fontsize(size = 10, part = &quot;all&quot;) %&gt;% </span></span>
-<span><span class="co">#  save_as_docx(path = here(&quot;figures&quot;, &quot;table_summary_all.docx&quot;))</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">tbl_summary_all</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">as_flex_table</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">fontsize</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">10</span>, part <span class="op">=</span> <span class="st">&quot;all&quot;</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">save_as_docx</span><span class="op">(</span>path <span class="op">=</span> <span class="fu">here</span><span class="op">(</span><span class="st">&quot;output&quot;</span>, <span class="st">&quot;table_summary_all.docx&quot;</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section><section id="excluded-participants-due-to-missing-data" class="level2"><h2 class="anchored" data-anchor-id="excluded-participants-due-to-missing-data">Excluded participants due to missing data</h2>
@@ -4158,48 +4166,56 @@ text-indent: 25px;
 <span>                <span class="va">substanceUse</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">tbl_summary</span><span class="op">(</span>by <span class="op">=</span> <span class="va">substanceUse</span>,</span>
 <span>              statistic <span class="op">=</span> <span class="va">ptsd_total</span> <span class="op">~</span> <span class="st">&quot;{mean} ({sd})&quot;</span>,</span>
-<span>              missing <span class="op">=</span> <span class="st">&quot;always&quot;</span>,</span>
 <span>              digits <span class="op">=</span> <span class="fu">all_continuous</span><span class="op">(</span><span class="op">)</span> <span class="op">~</span> <span class="fl">1</span>,</span>
-<span>              <span class="co"># missing = &quot;no&quot;,</span></span>
+<span>              missing <span class="op">=</span> <span class="st">&quot;always&quot;</span>,</span>
 <span>              missing_text <span class="op">=</span> <span class="st">&quot;Missing values&quot;</span>,</span>
-<span>              type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">region</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
-<span>                          <span class="va">grade</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
-<span>                          <span class="va">gender</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
-<span>                          <span class="va">ptsd_total</span> <span class="op">~</span> <span class="st">&quot;continuous&quot;</span>,</span>
-<span>                          <span class="va">social_support_total</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
-<span>                          <span class="va">adult_ss</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
-<span>                          <span class="va">peer_ss</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
-<span>                          <span class="va">teacher_ss</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span><span class="op">)</span>,</span>
+<span>              type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>                <span class="va">region</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
+<span>                <span class="va">grade</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
+<span>                <span class="va">gender</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
+<span>                <span class="va">ptsd_total</span> <span class="op">~</span> <span class="st">&quot;continuous&quot;</span>,</span>
+<span>                <span class="va">social_support_total</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
+<span>                <span class="va">adult_ss</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
+<span>                <span class="va">peer_ss</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
+<span>                <span class="va">teacher_ss</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span><span class="op">)</span>,</span>
+<span>              label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>                region <span class="op">=</span> <span class="st">&quot;Region&quot;</span>,</span>
+<span>                grade <span class="op">=</span> <span class="st">&quot;Grade&quot;</span>,</span>
+<span>                gender <span class="op">=</span> <span class="st">&quot;Gender&quot;</span>,</span>
+<span>                ptsd_total <span class="op">=</span> <span class="st">&quot;PTSD Total&quot;</span>,</span>
+<span>                social_support_total <span class="op">=</span> <span class="st">&quot;Social Support Total&quot;</span>,</span>
+<span>                adult_ss <span class="op">=</span> <span class="st">&quot;Adult SS&quot;</span>,</span>
+<span>                peer_ss <span class="op">=</span> <span class="st">&quot;Peer SS&quot;</span>,</span>
+<span>                teacher_ss <span class="op">=</span> <span class="st">&quot;Teacher SS&quot;</span><span class="op">)</span>,</span>
 <span>              sort <span class="op">=</span> <span class="fu">everything</span><span class="op">(</span><span class="op">)</span> <span class="op">~</span> <span class="st">&quot;frequency&quot;</span>,</span>
-<span>              percent <span class="op">=</span> <span class="st">&quot;cell&quot;</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>              percent <span class="op">=</span> <span class="st">&quot;column&quot;</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">add_overall</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">add_n</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">bold_labels</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">italicize_levels</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">modify_spanning_header</span><span class="op">(</span><span class="fu">all_stat_cols</span><span class="op">(</span><span class="op">)</span> <span class="op">~</span> <span class="st">&quot;**Substance Use Level**&quot;</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">#tbl_summary_all %&gt;% </span></span>
-<span><span class="co">#  as_flex_table() %&gt;% </span></span>
-<span><span class="co">#  fontsize(size = 10, part = &quot;all&quot;) %&gt;% </span></span>
-<span><span class="co">#  save_as_docx(path = here(&quot;figures&quot;, &quot;table_summary_unusedSample.docx&quot;))</span></span>
+<span><span class="va">tbl_summary_excluded</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">as_flex_table</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">fontsize</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">10</span>, part <span class="op">=</span> <span class="st">&quot;all&quot;</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">save_as_docx</span><span class="op">(</span>path <span class="op">=</span> <span class="fu">here</span><span class="op">(</span><span class="st">&quot;output&quot;</span>, <span class="st">&quot;table_summary_unusedSample.docx&quot;</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">tbl_summary_excluded</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
-<div id="vkezjwpoli" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vkezjwpoli table {
+<div id="coueipluxr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#coueipluxr table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#vkezjwpoli thead, #vkezjwpoli tbody, #vkezjwpoli tfoot, #vkezjwpoli tr, #vkezjwpoli td, #vkezjwpoli th {
+#coueipluxr thead, #coueipluxr tbody, #coueipluxr tfoot, #coueipluxr tr, #coueipluxr td, #coueipluxr th {
 border-style: none;
 }
-#vkezjwpoli p {
+#coueipluxr p {
 margin: 0;
 padding: 0;
 }
-#vkezjwpoli .gt_table {
+#coueipluxr .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -4224,11 +4240,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#vkezjwpoli .gt_caption {
+#coueipluxr .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#vkezjwpoli .gt_title {
+#coueipluxr .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -4239,7 +4255,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#vkezjwpoli .gt_subtitle {
+#coueipluxr .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -4250,7 +4266,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#vkezjwpoli .gt_heading {
+#coueipluxr .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -4261,12 +4277,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#vkezjwpoli .gt_bottom_border {
+#coueipluxr .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#vkezjwpoli .gt_col_headings {
+#coueipluxr .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -4280,7 +4296,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#vkezjwpoli .gt_col_heading {
+#coueipluxr .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4299,7 +4315,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#vkezjwpoli .gt_column_spanner_outer {
+#coueipluxr .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4310,13 +4326,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#vkezjwpoli .gt_column_spanner_outer:first-child {
+#coueipluxr .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#vkezjwpoli .gt_column_spanner_outer:last-child {
+#coueipluxr .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#vkezjwpoli .gt_column_spanner {
+#coueipluxr .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -4327,10 +4343,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#vkezjwpoli .gt_spanner_row {
+#coueipluxr .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#vkezjwpoli .gt_group_heading {
+#coueipluxr .gt_group_heading {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -4355,7 +4371,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#vkezjwpoli .gt_empty_group_heading {
+#coueipluxr .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -4369,13 +4385,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#vkezjwpoli .gt_from_md > :first-child {
+#coueipluxr .gt_from_md > :first-child {
 margin-top: 0;
 }
-#vkezjwpoli .gt_from_md > :last-child {
+#coueipluxr .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#vkezjwpoli .gt_row {
+#coueipluxr .gt_row {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -4393,7 +4409,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#vkezjwpoli .gt_stub {
+#coueipluxr .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4405,7 +4421,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#vkezjwpoli .gt_stub_row_group {
+#coueipluxr .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4418,13 +4434,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#vkezjwpoli .gt_row_group_first td {
+#coueipluxr .gt_row_group_first td {
 border-top-width: 2px;
 }
-#vkezjwpoli .gt_row_group_first th {
+#coueipluxr .gt_row_group_first th {
 border-top-width: 2px;
 }
-#vkezjwpoli .gt_summary_row {
+#coueipluxr .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -4433,14 +4449,14 @@ padding-bottom: 1px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#vkezjwpoli .gt_first_summary_row {
+#coueipluxr .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#vkezjwpoli .gt_first_summary_row.thick {
+#coueipluxr .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#vkezjwpoli .gt_last_summary_row {
+#coueipluxr .gt_last_summary_row {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -4449,7 +4465,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#vkezjwpoli .gt_grand_summary_row {
+#coueipluxr .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -4458,7 +4474,7 @@ padding-bottom: 1px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#vkezjwpoli .gt_first_grand_summary_row {
+#coueipluxr .gt_first_grand_summary_row {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -4467,7 +4483,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#vkezjwpoli .gt_last_grand_summary_row_top {
+#coueipluxr .gt_last_grand_summary_row_top {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -4476,10 +4492,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#vkezjwpoli .gt_striped {
+#coueipluxr .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#vkezjwpoli .gt_table_body {
+#coueipluxr .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -4487,7 +4503,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#vkezjwpoli .gt_footnotes {
+#coueipluxr .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -4500,7 +4516,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#vkezjwpoli .gt_footnote {
+#coueipluxr .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 1px;
@@ -4508,7 +4524,7 @@ padding-bottom: 1px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#vkezjwpoli .gt_sourcenotes {
+#coueipluxr .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -4521,57 +4537,57 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#vkezjwpoli .gt_sourcenote {
+#coueipluxr .gt_sourcenote {
 font-size: 90%;
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#vkezjwpoli .gt_left {
+#coueipluxr .gt_left {
 text-align: left;
 }
-#vkezjwpoli .gt_center {
+#coueipluxr .gt_center {
 text-align: center;
 }
-#vkezjwpoli .gt_right {
+#coueipluxr .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#vkezjwpoli .gt_font_normal {
+#coueipluxr .gt_font_normal {
 font-weight: normal;
 }
-#vkezjwpoli .gt_font_bold {
+#coueipluxr .gt_font_bold {
 font-weight: bold;
 }
-#vkezjwpoli .gt_font_italic {
+#coueipluxr .gt_font_italic {
 font-style: italic;
 }
-#vkezjwpoli .gt_super {
+#coueipluxr .gt_super {
 font-size: 65%;
 }
-#vkezjwpoli .gt_footnote_marks {
+#coueipluxr .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#vkezjwpoli .gt_asterisk {
+#coueipluxr .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#vkezjwpoli .gt_indent_1 {
+#coueipluxr .gt_indent_1 {
 text-indent: 5px;
 }
-#vkezjwpoli .gt_indent_2 {
+#coueipluxr .gt_indent_2 {
 text-indent: 10px;
 }
-#vkezjwpoli .gt_indent_3 {
+#coueipluxr .gt_indent_3 {
 text-indent: 15px;
 }
-#vkezjwpoli .gt_indent_4 {
+#coueipluxr .gt_indent_4 {
 text-indent: 20px;
 }
-#vkezjwpoli .gt_indent_5 {
+#coueipluxr .gt_indent_5 {
 text-indent: 25px;
 }
 </style>
@@ -4596,7 +4612,7 @@ text-indent: 25px;
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-weight: bold">region, n (%)</td>
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Region, n (%)</td>
 <td class="gt_row gt_center" headers="n">18,913</td>
 <td class="gt_row gt_center" headers="stat_0"></td>
 <td class="gt_row gt_center" headers="stat_1"></td>
@@ -4604,63 +4620,63 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3"></td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    PONCE</td>
+<td class="gt_row gt_left" headers="label">    PONCE</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">3,693 (20)</td>
-<td class="gt_row gt_center" headers="stat_1">3,348 (18)</td>
-<td class="gt_row gt_center" headers="stat_2">230 (1.2)</td>
-<td class="gt_row gt_center" headers="stat_3">115 (0.6)</td>
+<td class="gt_row gt_center" headers="stat_1">3,348 (20)</td>
+<td class="gt_row gt_center" headers="stat_2">230 (20)</td>
+<td class="gt_row gt_center" headers="stat_3">115 (18)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    MAYAGUEZ</td>
+<td class="gt_row gt_left" headers="label">    MAYAGUEZ</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">3,378 (18)</td>
-<td class="gt_row gt_center" headers="stat_1">3,098 (16)</td>
-<td class="gt_row gt_center" headers="stat_2">183 (1.0)</td>
-<td class="gt_row gt_center" headers="stat_3">97 (0.5)</td>
+<td class="gt_row gt_center" headers="stat_1">3,098 (18)</td>
+<td class="gt_row gt_center" headers="stat_2">183 (16)</td>
+<td class="gt_row gt_center" headers="stat_3">97 (16)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    HUMACAO</td>
+<td class="gt_row gt_left" headers="label">    HUMACAO</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">3,002 (16)</td>
-<td class="gt_row gt_center" headers="stat_1">2,678 (14)</td>
-<td class="gt_row gt_center" headers="stat_2">207 (1.1)</td>
-<td class="gt_row gt_center" headers="stat_3">117 (0.6)</td>
+<td class="gt_row gt_center" headers="stat_1">2,678 (16)</td>
+<td class="gt_row gt_center" headers="stat_2">207 (18)</td>
+<td class="gt_row gt_center" headers="stat_3">117 (19)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    SAN JUAN</td>
+<td class="gt_row gt_left" headers="label">    SAN JUAN</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">2,835 (15)</td>
-<td class="gt_row gt_center" headers="stat_1">2,546 (13)</td>
-<td class="gt_row gt_center" headers="stat_2">176 (0.9)</td>
-<td class="gt_row gt_center" headers="stat_3">113 (0.6)</td>
+<td class="gt_row gt_center" headers="stat_1">2,546 (15)</td>
+<td class="gt_row gt_center" headers="stat_2">176 (16)</td>
+<td class="gt_row gt_center" headers="stat_3">113 (18)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    BAYAMON</td>
+<td class="gt_row gt_left" headers="label">    BAYAMON</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">2,742 (14)</td>
-<td class="gt_row gt_center" headers="stat_1">2,527 (13)</td>
-<td class="gt_row gt_center" headers="stat_2">139 (0.7)</td>
-<td class="gt_row gt_center" headers="stat_3">76 (0.4)</td>
+<td class="gt_row gt_center" headers="stat_1">2,527 (15)</td>
+<td class="gt_row gt_center" headers="stat_2">139 (12)</td>
+<td class="gt_row gt_center" headers="stat_3">76 (12)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    CAGUAS</td>
+<td class="gt_row gt_left" headers="label">    CAGUAS</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">2,316 (12)</td>
-<td class="gt_row gt_center" headers="stat_1">2,074 (11)</td>
-<td class="gt_row gt_center" headers="stat_2">151 (0.8)</td>
-<td class="gt_row gt_center" headers="stat_3">91 (0.5)</td>
+<td class="gt_row gt_center" headers="stat_1">2,074 (12)</td>
+<td class="gt_row gt_center" headers="stat_2">151 (13)</td>
+<td class="gt_row gt_center" headers="stat_3">91 (15)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    ARECIBO</td>
+<td class="gt_row gt_left" headers="label">    ARECIBO</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">947 (5.0)</td>
-<td class="gt_row gt_center" headers="stat_1">892 (4.7)</td>
-<td class="gt_row gt_center" headers="stat_2">40 (0.2)</td>
-<td class="gt_row gt_center" headers="stat_3">15 (&lt;0.1)</td>
+<td class="gt_row gt_center" headers="stat_1">892 (5.2)</td>
+<td class="gt_row gt_center" headers="stat_2">40 (3.6)</td>
+<td class="gt_row gt_center" headers="stat_3">15 (2.4)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Missing values</td>
+<td class="gt_row gt_left" headers="label">    Missing values</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">0</td>
 <td class="gt_row gt_center" headers="stat_1">0</td>
@@ -4668,7 +4684,7 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3">0</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-weight: bold">grade, n (%)</td>
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Grade, n (%)</td>
 <td class="gt_row gt_center" headers="n">18,913</td>
 <td class="gt_row gt_center" headers="stat_0"></td>
 <td class="gt_row gt_center" headers="stat_1"></td>
@@ -4676,55 +4692,55 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3"></td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Grade 7</td>
+<td class="gt_row gt_left" headers="label">    Grade 7</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">4,344 (23)</td>
-<td class="gt_row gt_center" headers="stat_1">4,159 (22)</td>
-<td class="gt_row gt_center" headers="stat_2">115 (0.6)</td>
-<td class="gt_row gt_center" headers="stat_3">70 (0.4)</td>
+<td class="gt_row gt_center" headers="stat_1">4,159 (24)</td>
+<td class="gt_row gt_center" headers="stat_2">115 (10)</td>
+<td class="gt_row gt_center" headers="stat_3">70 (11)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Grade 8</td>
+<td class="gt_row gt_left" headers="label">    Grade 8</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">3,870 (20)</td>
-<td class="gt_row gt_center" headers="stat_1">3,667 (19)</td>
-<td class="gt_row gt_center" headers="stat_2">139 (0.7)</td>
-<td class="gt_row gt_center" headers="stat_3">64 (0.3)</td>
+<td class="gt_row gt_center" headers="stat_1">3,667 (21)</td>
+<td class="gt_row gt_center" headers="stat_2">139 (12)</td>
+<td class="gt_row gt_center" headers="stat_3">64 (10)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Grade 9</td>
+<td class="gt_row gt_left" headers="label">    Grade 9</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">3,027 (16)</td>
-<td class="gt_row gt_center" headers="stat_1">2,793 (15)</td>
-<td class="gt_row gt_center" headers="stat_2">161 (0.9)</td>
-<td class="gt_row gt_center" headers="stat_3">73 (0.4)</td>
+<td class="gt_row gt_center" headers="stat_1">2,793 (16)</td>
+<td class="gt_row gt_center" headers="stat_2">161 (14)</td>
+<td class="gt_row gt_center" headers="stat_3">73 (12)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Grade 10</td>
+<td class="gt_row gt_left" headers="label">    Grade 10</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">2,839 (15)</td>
-<td class="gt_row gt_center" headers="stat_1">2,520 (13)</td>
-<td class="gt_row gt_center" headers="stat_2">199 (1.1)</td>
-<td class="gt_row gt_center" headers="stat_3">120 (0.6)</td>
+<td class="gt_row gt_center" headers="stat_1">2,520 (15)</td>
+<td class="gt_row gt_center" headers="stat_2">199 (18)</td>
+<td class="gt_row gt_center" headers="stat_3">120 (19)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Grade 11</td>
+<td class="gt_row gt_left" headers="label">    Grade 11</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">2,617 (14)</td>
-<td class="gt_row gt_center" headers="stat_1">2,283 (12)</td>
-<td class="gt_row gt_center" headers="stat_2">223 (1.2)</td>
-<td class="gt_row gt_center" headers="stat_3">111 (0.6)</td>
+<td class="gt_row gt_center" headers="stat_1">2,283 (13)</td>
+<td class="gt_row gt_center" headers="stat_2">223 (20)</td>
+<td class="gt_row gt_center" headers="stat_3">111 (18)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Grade 12</td>
+<td class="gt_row gt_left" headers="label">    Grade 12</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">2,216 (12)</td>
-<td class="gt_row gt_center" headers="stat_1">1,741 (9.2)</td>
-<td class="gt_row gt_center" headers="stat_2">289 (1.5)</td>
-<td class="gt_row gt_center" headers="stat_3">186 (1.0)</td>
+<td class="gt_row gt_center" headers="stat_1">1,741 (10)</td>
+<td class="gt_row gt_center" headers="stat_2">289 (26)</td>
+<td class="gt_row gt_center" headers="stat_3">186 (30)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Missing values</td>
+<td class="gt_row gt_left" headers="label">    Missing values</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">0</td>
 <td class="gt_row gt_center" headers="stat_1">0</td>
@@ -4732,7 +4748,7 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3">0</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-weight: bold">gender, n (%)</td>
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Gender, n (%)</td>
 <td class="gt_row gt_center" headers="n">17,408</td>
 <td class="gt_row gt_center" headers="stat_0"></td>
 <td class="gt_row gt_center" headers="stat_1"></td>
@@ -4740,23 +4756,23 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3"></td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Female</td>
+<td class="gt_row gt_left" headers="label">    Female</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">9,264 (53)</td>
-<td class="gt_row gt_center" headers="stat_1">8,560 (49)</td>
-<td class="gt_row gt_center" headers="stat_2">503 (2.9)</td>
-<td class="gt_row gt_center" headers="stat_3">201 (1.2)</td>
+<td class="gt_row gt_center" headers="stat_1">8,560 (54)</td>
+<td class="gt_row gt_center" headers="stat_2">503 (50)</td>
+<td class="gt_row gt_center" headers="stat_3">201 (36)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Male</td>
+<td class="gt_row gt_left" headers="label">    Male</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">8,144 (47)</td>
-<td class="gt_row gt_center" headers="stat_1">7,286 (42)</td>
-<td class="gt_row gt_center" headers="stat_2">506 (2.9)</td>
-<td class="gt_row gt_center" headers="stat_3">352 (2.0)</td>
+<td class="gt_row gt_center" headers="stat_1">7,286 (46)</td>
+<td class="gt_row gt_center" headers="stat_2">506 (50)</td>
+<td class="gt_row gt_center" headers="stat_3">352 (64)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Missing values</td>
+<td class="gt_row gt_left" headers="label">    Missing values</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">1,505</td>
 <td class="gt_row gt_center" headers="stat_1">1,317</td>
@@ -4764,7 +4780,7 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3">71</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-weight: bold">ptsd_total, Mean (SD)</td>
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">PTSD Total, Mean (SD)</td>
 <td class="gt_row gt_center" headers="n">1,307</td>
 <td class="gt_row gt_center" headers="stat_0">7.7 (7.4)</td>
 <td class="gt_row gt_center" headers="stat_1">7.1 (6.7)</td>
@@ -4772,7 +4788,7 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3">15.8 (13.5)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Missing values</td>
+<td class="gt_row gt_left" headers="label">    Missing values</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">17,606</td>
 <td class="gt_row gt_center" headers="stat_1">15,988</td>
@@ -4780,7 +4796,7 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3">585</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-weight: bold">social_support_total, n (%)</td>
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Social Support Total, n (%)</td>
 <td class="gt_row gt_center" headers="n">18,176</td>
 <td class="gt_row gt_center" headers="stat_0"></td>
 <td class="gt_row gt_center" headers="stat_1"></td>
@@ -4788,39 +4804,39 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3"></td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    3 of 3 Endorsed</td>
+<td class="gt_row gt_left" headers="label">    3 of 3 Endorsed</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">8,172 (45)</td>
-<td class="gt_row gt_center" headers="stat_1">7,568 (42)</td>
-<td class="gt_row gt_center" headers="stat_2">430 (2.4)</td>
-<td class="gt_row gt_center" headers="stat_3">174 (1.0)</td>
+<td class="gt_row gt_center" headers="stat_1">7,568 (46)</td>
+<td class="gt_row gt_center" headers="stat_2">430 (40)</td>
+<td class="gt_row gt_center" headers="stat_3">174 (29)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    2 of 3 Endorsed</td>
+<td class="gt_row gt_left" headers="label">    2 of 3 Endorsed</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">7,426 (41)</td>
-<td class="gt_row gt_center" headers="stat_1">6,678 (37)</td>
-<td class="gt_row gt_center" headers="stat_2">465 (2.6)</td>
-<td class="gt_row gt_center" headers="stat_3">283 (1.6)</td>
+<td class="gt_row gt_center" headers="stat_1">6,678 (41)</td>
+<td class="gt_row gt_center" headers="stat_2">465 (43)</td>
+<td class="gt_row gt_center" headers="stat_3">283 (46)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    1 of 3 Endorsed</td>
+<td class="gt_row gt_left" headers="label">    1 of 3 Endorsed</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">2,064 (11)</td>
-<td class="gt_row gt_center" headers="stat_1">1,831 (10)</td>
-<td class="gt_row gt_center" headers="stat_2">132 (0.7)</td>
-<td class="gt_row gt_center" headers="stat_3">101 (0.6)</td>
+<td class="gt_row gt_center" headers="stat_1">1,831 (11)</td>
+<td class="gt_row gt_center" headers="stat_2">132 (12)</td>
+<td class="gt_row gt_center" headers="stat_3">101 (17)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    0 of 3 Endorsed</td>
+<td class="gt_row gt_left" headers="label">    0 of 3 Endorsed</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">514 (2.8)</td>
-<td class="gt_row gt_center" headers="stat_1">405 (2.2)</td>
-<td class="gt_row gt_center" headers="stat_2">57 (0.3)</td>
-<td class="gt_row gt_center" headers="stat_3">52 (0.3)</td>
+<td class="gt_row gt_center" headers="stat_1">405 (2.5)</td>
+<td class="gt_row gt_center" headers="stat_2">57 (5.3)</td>
+<td class="gt_row gt_center" headers="stat_3">52 (8.5)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Missing values</td>
+<td class="gt_row gt_left" headers="label">    Missing values</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">737</td>
 <td class="gt_row gt_center" headers="stat_1">681</td>
@@ -4828,7 +4844,7 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3">14</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-weight: bold">adult_ss, n (%)</td>
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Adult SS, n (%)</td>
 <td class="gt_row gt_center" headers="n">18,677</td>
 <td class="gt_row gt_center" headers="stat_0"></td>
 <td class="gt_row gt_center" headers="stat_1"></td>
@@ -4836,23 +4852,23 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3"></td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    1</td>
+<td class="gt_row gt_left" headers="label">    Yes</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">17,322 (93)</td>
-<td class="gt_row gt_center" headers="stat_1">15,882 (85)</td>
-<td class="gt_row gt_center" headers="stat_2">946 (5.1)</td>
-<td class="gt_row gt_center" headers="stat_3">494 (2.6)</td>
+<td class="gt_row gt_center" headers="stat_1">15,882 (94)</td>
+<td class="gt_row gt_center" headers="stat_2">946 (85)</td>
+<td class="gt_row gt_center" headers="stat_3">494 (80)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    0</td>
+<td class="gt_row gt_left" headers="label">    No</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">1,355 (7.3)</td>
-<td class="gt_row gt_center" headers="stat_1">1,070 (5.7)</td>
-<td class="gt_row gt_center" headers="stat_2">161 (0.9)</td>
-<td class="gt_row gt_center" headers="stat_3">124 (0.7)</td>
+<td class="gt_row gt_center" headers="stat_1">1,070 (6.3)</td>
+<td class="gt_row gt_center" headers="stat_2">161 (15)</td>
+<td class="gt_row gt_center" headers="stat_3">124 (20)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Missing values</td>
+<td class="gt_row gt_left" headers="label">    Missing values</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">236</td>
 <td class="gt_row gt_center" headers="stat_1">211</td>
@@ -4860,7 +4876,7 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3">6</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-weight: bold">peer_ss, n (%)</td>
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Peer SS, n (%)</td>
 <td class="gt_row gt_center" headers="n">18,595</td>
 <td class="gt_row gt_center" headers="stat_0"></td>
 <td class="gt_row gt_center" headers="stat_1"></td>
@@ -4868,23 +4884,23 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3"></td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    1</td>
+<td class="gt_row gt_left" headers="label">    Yes</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">15,655 (84)</td>
-<td class="gt_row gt_center" headers="stat_1">14,251 (77)</td>
-<td class="gt_row gt_center" headers="stat_2">920 (4.9)</td>
-<td class="gt_row gt_center" headers="stat_3">484 (2.6)</td>
+<td class="gt_row gt_center" headers="stat_1">14,251 (84)</td>
+<td class="gt_row gt_center" headers="stat_2">920 (83)</td>
+<td class="gt_row gt_center" headers="stat_3">484 (79)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    0</td>
+<td class="gt_row gt_left" headers="label">    No</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">2,940 (16)</td>
-<td class="gt_row gt_center" headers="stat_1">2,623 (14)</td>
-<td class="gt_row gt_center" headers="stat_2">185 (1.0)</td>
-<td class="gt_row gt_center" headers="stat_3">132 (0.7)</td>
+<td class="gt_row gt_center" headers="stat_1">2,623 (16)</td>
+<td class="gt_row gt_center" headers="stat_2">185 (17)</td>
+<td class="gt_row gt_center" headers="stat_3">132 (21)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Missing values</td>
+<td class="gt_row gt_left" headers="label">    Missing values</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">318</td>
 <td class="gt_row gt_center" headers="stat_1">289</td>
@@ -4892,7 +4908,7 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3">8</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-weight: bold">teacher_ss, n (%)</td>
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Teacher SS, n (%)</td>
 <td class="gt_row gt_center" headers="n">18,536</td>
 <td class="gt_row gt_center" headers="stat_0"></td>
 <td class="gt_row gt_center" headers="stat_1"></td>
@@ -4900,23 +4916,23 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3"></td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    1</td>
+<td class="gt_row gt_left" headers="label">    Yes</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">9,450 (51)</td>
-<td class="gt_row gt_center" headers="stat_1">8,701 (47)</td>
-<td class="gt_row gt_center" headers="stat_2">524 (2.8)</td>
-<td class="gt_row gt_center" headers="stat_3">225 (1.2)</td>
+<td class="gt_row gt_center" headers="stat_1">8,701 (52)</td>
+<td class="gt_row gt_center" headers="stat_2">524 (47)</td>
+<td class="gt_row gt_center" headers="stat_3">225 (36)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    0</td>
+<td class="gt_row gt_left" headers="label">    No</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">9,086 (49)</td>
-<td class="gt_row gt_center" headers="stat_1">8,110 (44)</td>
-<td class="gt_row gt_center" headers="stat_2">584 (3.2)</td>
-<td class="gt_row gt_center" headers="stat_3">392 (2.1)</td>
+<td class="gt_row gt_center" headers="stat_1">8,110 (48)</td>
+<td class="gt_row gt_center" headers="stat_2">584 (53)</td>
+<td class="gt_row gt_center" headers="stat_3">392 (64)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Missing values</td>
+<td class="gt_row gt_left" headers="label">    Missing values</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">377</td>
 <td class="gt_row gt_center" headers="stat_1">352</td>
@@ -4952,48 +4968,56 @@ text-indent: 25px;
 <span>                <span class="va">substanceUse</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">tbl_summary</span><span class="op">(</span>by <span class="op">=</span> <span class="va">substanceUse</span>,</span>
 <span>              statistic <span class="op">=</span> <span class="va">ptsd_total</span> <span class="op">~</span> <span class="st">&quot;{mean} ({sd})&quot;</span>,</span>
-<span>              missing <span class="op">=</span> <span class="st">&quot;always&quot;</span>,</span>
 <span>              digits <span class="op">=</span> <span class="fu">all_continuous</span><span class="op">(</span><span class="op">)</span> <span class="op">~</span> <span class="fl">1</span>,</span>
-<span>              <span class="co"># missing = &quot;no&quot;,</span></span>
+<span>              missing <span class="op">=</span> <span class="st">&quot;always&quot;</span>,</span>
 <span>              missing_text <span class="op">=</span> <span class="st">&quot;Missing values&quot;</span>,</span>
-<span>              type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">region</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
-<span>                          <span class="va">grade</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
-<span>                          <span class="va">gender</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
-<span>                          <span class="va">ptsd_total</span> <span class="op">~</span> <span class="st">&quot;continuous&quot;</span>,</span>
-<span>                          <span class="va">social_support_total</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
-<span>                          <span class="va">adult_ss</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
-<span>                          <span class="va">peer_ss</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
-<span>                          <span class="va">teacher_ss</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span><span class="op">)</span>,</span>
+<span>              type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>                <span class="va">region</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
+<span>                <span class="va">grade</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
+<span>                <span class="va">gender</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
+<span>                <span class="va">ptsd_total</span> <span class="op">~</span> <span class="st">&quot;continuous&quot;</span>,</span>
+<span>                <span class="va">social_support_total</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
+<span>                <span class="va">adult_ss</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
+<span>                <span class="va">peer_ss</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span>,</span>
+<span>                <span class="va">teacher_ss</span> <span class="op">~</span> <span class="st">&quot;categorical&quot;</span><span class="op">)</span>,</span>
+<span>              label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span>                region <span class="op">=</span> <span class="st">&quot;Region&quot;</span>,</span>
+<span>                grade <span class="op">=</span> <span class="st">&quot;Grade&quot;</span>,</span>
+<span>                gender <span class="op">=</span> <span class="st">&quot;Gender&quot;</span>,</span>
+<span>                ptsd_total <span class="op">=</span> <span class="st">&quot;PTSD Total&quot;</span>,</span>
+<span>                social_support_total <span class="op">=</span> <span class="st">&quot;Social Support Total&quot;</span>,</span>
+<span>                adult_ss <span class="op">=</span> <span class="st">&quot;Adult SS&quot;</span>,</span>
+<span>                peer_ss <span class="op">=</span> <span class="st">&quot;Peer SS&quot;</span>,</span>
+<span>                teacher_ss <span class="op">=</span> <span class="st">&quot;Teacher SS&quot;</span><span class="op">)</span>,</span>
 <span>              sort <span class="op">=</span> <span class="fu">everything</span><span class="op">(</span><span class="op">)</span> <span class="op">~</span> <span class="st">&quot;frequency&quot;</span>,</span>
-<span>              percent <span class="op">=</span> <span class="st">&quot;cell&quot;</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>              percent <span class="op">=</span> <span class="st">&quot;column&quot;</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">add_overall</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">add_n</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">bold_labels</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
-<span>  <span class="fu">italicize_levels</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
 <span>  <span class="fu">modify_spanning_header</span><span class="op">(</span><span class="fu">all_stat_cols</span><span class="op">(</span><span class="op">)</span> <span class="op">~</span> <span class="st">&quot;**Substance Use Level**&quot;</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">#tbl_summary_all %&gt;% </span></span>
-<span><span class="co">#  as_flex_table() %&gt;% </span></span>
-<span><span class="co">#  fontsize(size = 10, part = &quot;all&quot;) %&gt;% </span></span>
-<span><span class="co">#  save_as_docx(path = here(&quot;figures&quot;, &quot;table_summary_regresSample.docx&quot;))</span></span>
+<span><span class="va">table_included</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">as_flex_table</span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">fontsize</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">10</span>, part <span class="op">=</span> <span class="st">&quot;all&quot;</span><span class="op">)</span> <span class="op">%&gt;%</span> </span>
+<span>  <span class="fu">save_as_docx</span><span class="op">(</span>path <span class="op">=</span> <span class="fu">here</span><span class="op">(</span><span class="st">&quot;output&quot;</span>, <span class="st">&quot;table_summary_regresSample.docx&quot;</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">table_included</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
-<div id="ebjygsjgmh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ebjygsjgmh table {
+<div id="sxcvprahru" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#sxcvprahru table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#ebjygsjgmh thead, #ebjygsjgmh tbody, #ebjygsjgmh tfoot, #ebjygsjgmh tr, #ebjygsjgmh td, #ebjygsjgmh th {
+#sxcvprahru thead, #sxcvprahru tbody, #sxcvprahru tfoot, #sxcvprahru tr, #sxcvprahru td, #sxcvprahru th {
 border-style: none;
 }
-#ebjygsjgmh p {
+#sxcvprahru p {
 margin: 0;
 padding: 0;
 }
-#ebjygsjgmh .gt_table {
+#sxcvprahru .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -5018,11 +5042,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#ebjygsjgmh .gt_caption {
+#sxcvprahru .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#ebjygsjgmh .gt_title {
+#sxcvprahru .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -5033,7 +5057,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#ebjygsjgmh .gt_subtitle {
+#sxcvprahru .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -5044,7 +5068,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#ebjygsjgmh .gt_heading {
+#sxcvprahru .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -5055,12 +5079,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#ebjygsjgmh .gt_bottom_border {
+#sxcvprahru .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#ebjygsjgmh .gt_col_headings {
+#sxcvprahru .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -5074,7 +5098,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#ebjygsjgmh .gt_col_heading {
+#sxcvprahru .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -5093,7 +5117,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#ebjygsjgmh .gt_column_spanner_outer {
+#sxcvprahru .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -5104,13 +5128,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#ebjygsjgmh .gt_column_spanner_outer:first-child {
+#sxcvprahru .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#ebjygsjgmh .gt_column_spanner_outer:last-child {
+#sxcvprahru .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#ebjygsjgmh .gt_column_spanner {
+#sxcvprahru .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -5121,10 +5145,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#ebjygsjgmh .gt_spanner_row {
+#sxcvprahru .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#ebjygsjgmh .gt_group_heading {
+#sxcvprahru .gt_group_heading {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -5149,7 +5173,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#ebjygsjgmh .gt_empty_group_heading {
+#sxcvprahru .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -5163,13 +5187,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#ebjygsjgmh .gt_from_md > :first-child {
+#sxcvprahru .gt_from_md > :first-child {
 margin-top: 0;
 }
-#ebjygsjgmh .gt_from_md > :last-child {
+#sxcvprahru .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#ebjygsjgmh .gt_row {
+#sxcvprahru .gt_row {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -5187,7 +5211,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#ebjygsjgmh .gt_stub {
+#sxcvprahru .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -5199,7 +5223,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ebjygsjgmh .gt_stub_row_group {
+#sxcvprahru .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -5212,13 +5236,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#ebjygsjgmh .gt_row_group_first td {
+#sxcvprahru .gt_row_group_first td {
 border-top-width: 2px;
 }
-#ebjygsjgmh .gt_row_group_first th {
+#sxcvprahru .gt_row_group_first th {
 border-top-width: 2px;
 }
-#ebjygsjgmh .gt_summary_row {
+#sxcvprahru .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -5227,14 +5251,14 @@ padding-bottom: 1px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ebjygsjgmh .gt_first_summary_row {
+#sxcvprahru .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#ebjygsjgmh .gt_first_summary_row.thick {
+#sxcvprahru .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#ebjygsjgmh .gt_last_summary_row {
+#sxcvprahru .gt_last_summary_row {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -5243,7 +5267,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#ebjygsjgmh .gt_grand_summary_row {
+#sxcvprahru .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -5252,7 +5276,7 @@ padding-bottom: 1px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ebjygsjgmh .gt_first_grand_summary_row {
+#sxcvprahru .gt_first_grand_summary_row {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -5261,7 +5285,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#ebjygsjgmh .gt_last_grand_summary_row_top {
+#sxcvprahru .gt_last_grand_summary_row_top {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -5270,10 +5294,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#ebjygsjgmh .gt_striped {
+#sxcvprahru .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#ebjygsjgmh .gt_table_body {
+#sxcvprahru .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -5281,7 +5305,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#ebjygsjgmh .gt_footnotes {
+#sxcvprahru .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -5294,7 +5318,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#ebjygsjgmh .gt_footnote {
+#sxcvprahru .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 1px;
@@ -5302,7 +5326,7 @@ padding-bottom: 1px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ebjygsjgmh .gt_sourcenotes {
+#sxcvprahru .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -5315,57 +5339,57 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#ebjygsjgmh .gt_sourcenote {
+#sxcvprahru .gt_sourcenote {
 font-size: 90%;
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ebjygsjgmh .gt_left {
+#sxcvprahru .gt_left {
 text-align: left;
 }
-#ebjygsjgmh .gt_center {
+#sxcvprahru .gt_center {
 text-align: center;
 }
-#ebjygsjgmh .gt_right {
+#sxcvprahru .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#ebjygsjgmh .gt_font_normal {
+#sxcvprahru .gt_font_normal {
 font-weight: normal;
 }
-#ebjygsjgmh .gt_font_bold {
+#sxcvprahru .gt_font_bold {
 font-weight: bold;
 }
-#ebjygsjgmh .gt_font_italic {
+#sxcvprahru .gt_font_italic {
 font-style: italic;
 }
-#ebjygsjgmh .gt_super {
+#sxcvprahru .gt_super {
 font-size: 65%;
 }
-#ebjygsjgmh .gt_footnote_marks {
+#sxcvprahru .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#ebjygsjgmh .gt_asterisk {
+#sxcvprahru .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#ebjygsjgmh .gt_indent_1 {
+#sxcvprahru .gt_indent_1 {
 text-indent: 5px;
 }
-#ebjygsjgmh .gt_indent_2 {
+#sxcvprahru .gt_indent_2 {
 text-indent: 10px;
 }
-#ebjygsjgmh .gt_indent_3 {
+#sxcvprahru .gt_indent_3 {
 text-indent: 15px;
 }
-#ebjygsjgmh .gt_indent_4 {
+#sxcvprahru .gt_indent_4 {
 text-indent: 20px;
 }
-#ebjygsjgmh .gt_indent_5 {
+#sxcvprahru .gt_indent_5 {
 text-indent: 25px;
 }
 </style>
@@ -5390,7 +5414,7 @@ text-indent: 25px;
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-weight: bold">region, n (%)</td>
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Region, n (%)</td>
 <td class="gt_row gt_center" headers="n">36,485</td>
 <td class="gt_row gt_center" headers="stat_0"></td>
 <td class="gt_row gt_center" headers="stat_1"></td>
@@ -5398,63 +5422,63 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3"></td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    PONCE</td>
+<td class="gt_row gt_left" headers="label">    PONCE</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">7,290 (20)</td>
-<td class="gt_row gt_center" headers="stat_1">6,811 (19)</td>
-<td class="gt_row gt_center" headers="stat_2">348 (1.0)</td>
-<td class="gt_row gt_center" headers="stat_3">131 (0.4)</td>
+<td class="gt_row gt_center" headers="stat_1">6,811 (20)</td>
+<td class="gt_row gt_center" headers="stat_2">348 (20)</td>
+<td class="gt_row gt_center" headers="stat_3">131 (20)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    MAYAGUEZ</td>
+<td class="gt_row gt_left" headers="label">    MAYAGUEZ</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">6,828 (19)</td>
-<td class="gt_row gt_center" headers="stat_1">6,421 (18)</td>
-<td class="gt_row gt_center" headers="stat_2">303 (0.8)</td>
-<td class="gt_row gt_center" headers="stat_3">104 (0.3)</td>
+<td class="gt_row gt_center" headers="stat_1">6,421 (19)</td>
+<td class="gt_row gt_center" headers="stat_2">303 (17)</td>
+<td class="gt_row gt_center" headers="stat_3">104 (16)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    HUMACAO</td>
+<td class="gt_row gt_left" headers="label">    HUMACAO</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">5,700 (16)</td>
-<td class="gt_row gt_center" headers="stat_1">5,285 (14)</td>
-<td class="gt_row gt_center" headers="stat_2">282 (0.8)</td>
-<td class="gt_row gt_center" headers="stat_3">133 (0.4)</td>
+<td class="gt_row gt_center" headers="stat_1">5,285 (16)</td>
+<td class="gt_row gt_center" headers="stat_2">282 (16)</td>
+<td class="gt_row gt_center" headers="stat_3">133 (20)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    SAN JUAN</td>
+<td class="gt_row gt_left" headers="label">    SAN JUAN</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">4,973 (14)</td>
 <td class="gt_row gt_center" headers="stat_1">4,599 (13)</td>
-<td class="gt_row gt_center" headers="stat_2">249 (0.7)</td>
-<td class="gt_row gt_center" headers="stat_3">125 (0.3)</td>
+<td class="gt_row gt_center" headers="stat_2">249 (14)</td>
+<td class="gt_row gt_center" headers="stat_3">125 (19)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    BAYAMON</td>
+<td class="gt_row gt_left" headers="label">    BAYAMON</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">4,872 (13)</td>
 <td class="gt_row gt_center" headers="stat_1">4,598 (13)</td>
-<td class="gt_row gt_center" headers="stat_2">214 (0.6)</td>
-<td class="gt_row gt_center" headers="stat_3">60 (0.2)</td>
+<td class="gt_row gt_center" headers="stat_2">214 (12)</td>
+<td class="gt_row gt_center" headers="stat_3">60 (9.0)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    CAGUAS</td>
+<td class="gt_row gt_left" headers="label">    CAGUAS</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">4,824 (13)</td>
-<td class="gt_row gt_center" headers="stat_1">4,455 (12)</td>
-<td class="gt_row gt_center" headers="stat_2">274 (0.8)</td>
-<td class="gt_row gt_center" headers="stat_3">95 (0.3)</td>
+<td class="gt_row gt_center" headers="stat_1">4,455 (13)</td>
+<td class="gt_row gt_center" headers="stat_2">274 (16)</td>
+<td class="gt_row gt_center" headers="stat_3">95 (14)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    ARECIBO</td>
+<td class="gt_row gt_left" headers="label">    ARECIBO</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">1,998 (5.5)</td>
-<td class="gt_row gt_center" headers="stat_1">1,906 (5.2)</td>
-<td class="gt_row gt_center" headers="stat_2">71 (0.2)</td>
-<td class="gt_row gt_center" headers="stat_3">21 (&lt;0.1)</td>
+<td class="gt_row gt_center" headers="stat_1">1,906 (5.6)</td>
+<td class="gt_row gt_center" headers="stat_2">71 (4.1)</td>
+<td class="gt_row gt_center" headers="stat_3">21 (3.1)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Missing values</td>
+<td class="gt_row gt_left" headers="label">    Missing values</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">0</td>
 <td class="gt_row gt_center" headers="stat_1">0</td>
@@ -5462,7 +5486,7 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3">0</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-weight: bold">grade, n (%)</td>
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Grade, n (%)</td>
 <td class="gt_row gt_center" headers="n">36,485</td>
 <td class="gt_row gt_center" headers="stat_0"></td>
 <td class="gt_row gt_center" headers="stat_1"></td>
@@ -5470,55 +5494,55 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3"></td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Grade 7</td>
+<td class="gt_row gt_left" headers="label">    Grade 7</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">6,754 (19)</td>
-<td class="gt_row gt_center" headers="stat_1">6,609 (18)</td>
-<td class="gt_row gt_center" headers="stat_2">104 (0.3)</td>
-<td class="gt_row gt_center" headers="stat_3">41 (0.1)</td>
+<td class="gt_row gt_center" headers="stat_1">6,609 (19)</td>
+<td class="gt_row gt_center" headers="stat_2">104 (6.0)</td>
+<td class="gt_row gt_center" headers="stat_3">41 (6.1)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Grade 8</td>
+<td class="gt_row gt_left" headers="label">    Grade 8</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">6,620 (18)</td>
-<td class="gt_row gt_center" headers="stat_1">6,422 (18)</td>
-<td class="gt_row gt_center" headers="stat_2">146 (0.4)</td>
-<td class="gt_row gt_center" headers="stat_3">52 (0.1)</td>
+<td class="gt_row gt_center" headers="stat_1">6,422 (19)</td>
+<td class="gt_row gt_center" headers="stat_2">146 (8.4)</td>
+<td class="gt_row gt_center" headers="stat_3">52 (7.8)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Grade 11</td>
+<td class="gt_row gt_left" headers="label">    Grade 11</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">6,043 (17)</td>
-<td class="gt_row gt_center" headers="stat_1">5,468 (15)</td>
-<td class="gt_row gt_center" headers="stat_2">415 (1.1)</td>
-<td class="gt_row gt_center" headers="stat_3">160 (0.4)</td>
+<td class="gt_row gt_center" headers="stat_1">5,468 (16)</td>
+<td class="gt_row gt_center" headers="stat_2">415 (24)</td>
+<td class="gt_row gt_center" headers="stat_3">160 (24)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Grade 10</td>
+<td class="gt_row gt_left" headers="label">    Grade 10</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">5,886 (16)</td>
-<td class="gt_row gt_center" headers="stat_1">5,476 (15)</td>
-<td class="gt_row gt_center" headers="stat_2">304 (0.8)</td>
-<td class="gt_row gt_center" headers="stat_3">106 (0.3)</td>
+<td class="gt_row gt_center" headers="stat_1">5,476 (16)</td>
+<td class="gt_row gt_center" headers="stat_2">304 (17)</td>
+<td class="gt_row gt_center" headers="stat_3">106 (16)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Grade 9</td>
+<td class="gt_row gt_left" headers="label">    Grade 9</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">5,807 (16)</td>
-<td class="gt_row gt_center" headers="stat_1">5,500 (15)</td>
-<td class="gt_row gt_center" headers="stat_2">222 (0.6)</td>
-<td class="gt_row gt_center" headers="stat_3">85 (0.2)</td>
+<td class="gt_row gt_center" headers="stat_1">5,500 (16)</td>
+<td class="gt_row gt_center" headers="stat_2">222 (13)</td>
+<td class="gt_row gt_center" headers="stat_3">85 (13)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Grade 12</td>
+<td class="gt_row gt_left" headers="label">    Grade 12</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">5,375 (15)</td>
 <td class="gt_row gt_center" headers="stat_1">4,600 (13)</td>
-<td class="gt_row gt_center" headers="stat_2">550 (1.5)</td>
-<td class="gt_row gt_center" headers="stat_3">225 (0.6)</td>
+<td class="gt_row gt_center" headers="stat_2">550 (32)</td>
+<td class="gt_row gt_center" headers="stat_3">225 (34)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Missing values</td>
+<td class="gt_row gt_left" headers="label">    Missing values</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">0</td>
 <td class="gt_row gt_center" headers="stat_1">0</td>
@@ -5526,7 +5550,7 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3">0</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-weight: bold">gender, n (%)</td>
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Gender, n (%)</td>
 <td class="gt_row gt_center" headers="n">36,485</td>
 <td class="gt_row gt_center" headers="stat_0"></td>
 <td class="gt_row gt_center" headers="stat_1"></td>
@@ -5534,23 +5558,23 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3"></td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Female</td>
+<td class="gt_row gt_left" headers="label">    Female</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">18,516 (51)</td>
-<td class="gt_row gt_center" headers="stat_1">17,381 (48)</td>
-<td class="gt_row gt_center" headers="stat_2">881 (2.4)</td>
-<td class="gt_row gt_center" headers="stat_3">254 (0.7)</td>
+<td class="gt_row gt_center" headers="stat_1">17,381 (51)</td>
+<td class="gt_row gt_center" headers="stat_2">881 (51)</td>
+<td class="gt_row gt_center" headers="stat_3">254 (38)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Male</td>
+<td class="gt_row gt_left" headers="label">    Male</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">17,969 (49)</td>
-<td class="gt_row gt_center" headers="stat_1">16,694 (46)</td>
-<td class="gt_row gt_center" headers="stat_2">860 (2.4)</td>
-<td class="gt_row gt_center" headers="stat_3">415 (1.1)</td>
+<td class="gt_row gt_center" headers="stat_1">16,694 (49)</td>
+<td class="gt_row gt_center" headers="stat_2">860 (49)</td>
+<td class="gt_row gt_center" headers="stat_3">415 (62)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Missing values</td>
+<td class="gt_row gt_left" headers="label">    Missing values</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">0</td>
 <td class="gt_row gt_center" headers="stat_1">0</td>
@@ -5558,7 +5582,7 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3">0</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-weight: bold">ptsd_total, Mean (SD)</td>
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">PTSD Total, Mean (SD)</td>
 <td class="gt_row gt_center" headers="n">36,485</td>
 <td class="gt_row gt_center" headers="stat_0">7.6 (6.7)</td>
 <td class="gt_row gt_center" headers="stat_1">7.3 (6.5)</td>
@@ -5566,7 +5590,7 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3">12.8 (9.5)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Missing values</td>
+<td class="gt_row gt_left" headers="label">    Missing values</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">0</td>
 <td class="gt_row gt_center" headers="stat_1">0</td>
@@ -5574,7 +5598,7 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3">0</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-weight: bold">social_support_total, n (%)</td>
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Social Support Total, n (%)</td>
 <td class="gt_row gt_center" headers="n">36,485</td>
 <td class="gt_row gt_center" headers="stat_0"></td>
 <td class="gt_row gt_center" headers="stat_1"></td>
@@ -5582,39 +5606,39 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3"></td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    3 of 3 Endorsed</td>
+<td class="gt_row gt_left" headers="label">    3 of 3 Endorsed</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">18,827 (52)</td>
-<td class="gt_row gt_center" headers="stat_1">17,810 (49)</td>
-<td class="gt_row gt_center" headers="stat_2">756 (2.1)</td>
-<td class="gt_row gt_center" headers="stat_3">261 (0.7)</td>
+<td class="gt_row gt_center" headers="stat_1">17,810 (52)</td>
+<td class="gt_row gt_center" headers="stat_2">756 (43)</td>
+<td class="gt_row gt_center" headers="stat_3">261 (39)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    2 of 3 Endorsed</td>
+<td class="gt_row gt_left" headers="label">    2 of 3 Endorsed</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">13,690 (38)</td>
-<td class="gt_row gt_center" headers="stat_1">12,667 (35)</td>
-<td class="gt_row gt_center" headers="stat_2">742 (2.0)</td>
-<td class="gt_row gt_center" headers="stat_3">281 (0.8)</td>
+<td class="gt_row gt_center" headers="stat_1">12,667 (37)</td>
+<td class="gt_row gt_center" headers="stat_2">742 (43)</td>
+<td class="gt_row gt_center" headers="stat_3">281 (42)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    1 of 3 Endorsed</td>
+<td class="gt_row gt_left" headers="label">    1 of 3 Endorsed</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">3,201 (8.8)</td>
-<td class="gt_row gt_center" headers="stat_1">2,930 (8.0)</td>
-<td class="gt_row gt_center" headers="stat_2">189 (0.5)</td>
-<td class="gt_row gt_center" headers="stat_3">82 (0.2)</td>
+<td class="gt_row gt_center" headers="stat_1">2,930 (8.6)</td>
+<td class="gt_row gt_center" headers="stat_2">189 (11)</td>
+<td class="gt_row gt_center" headers="stat_3">82 (12)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    0 of 3 Endorsed</td>
+<td class="gt_row gt_left" headers="label">    0 of 3 Endorsed</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">767 (2.1)</td>
-<td class="gt_row gt_center" headers="stat_1">668 (1.8)</td>
-<td class="gt_row gt_center" headers="stat_2">54 (0.1)</td>
-<td class="gt_row gt_center" headers="stat_3">45 (0.1)</td>
+<td class="gt_row gt_center" headers="stat_1">668 (2.0)</td>
+<td class="gt_row gt_center" headers="stat_2">54 (3.1)</td>
+<td class="gt_row gt_center" headers="stat_3">45 (6.7)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Missing values</td>
+<td class="gt_row gt_left" headers="label">    Missing values</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">0</td>
 <td class="gt_row gt_center" headers="stat_1">0</td>
@@ -5622,7 +5646,7 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3">0</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-weight: bold">adult_ss, n (%)</td>
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Adult SS, n (%)</td>
 <td class="gt_row gt_center" headers="n">36,485</td>
 <td class="gt_row gt_center" headers="stat_0"></td>
 <td class="gt_row gt_center" headers="stat_1"></td>
@@ -5630,23 +5654,23 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3"></td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    1</td>
+<td class="gt_row gt_left" headers="label">    Yes</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">34,626 (95)</td>
-<td class="gt_row gt_center" headers="stat_1">32,505 (89)</td>
-<td class="gt_row gt_center" headers="stat_2">1,553 (4.3)</td>
-<td class="gt_row gt_center" headers="stat_3">568 (1.6)</td>
+<td class="gt_row gt_center" headers="stat_1">32,505 (95)</td>
+<td class="gt_row gt_center" headers="stat_2">1,553 (89)</td>
+<td class="gt_row gt_center" headers="stat_3">568 (85)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    0</td>
+<td class="gt_row gt_left" headers="label">    No</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">1,859 (5.1)</td>
-<td class="gt_row gt_center" headers="stat_1">1,570 (4.3)</td>
-<td class="gt_row gt_center" headers="stat_2">188 (0.5)</td>
-<td class="gt_row gt_center" headers="stat_3">101 (0.3)</td>
+<td class="gt_row gt_center" headers="stat_1">1,570 (4.6)</td>
+<td class="gt_row gt_center" headers="stat_2">188 (11)</td>
+<td class="gt_row gt_center" headers="stat_3">101 (15)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Missing values</td>
+<td class="gt_row gt_left" headers="label">    Missing values</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">0</td>
 <td class="gt_row gt_center" headers="stat_1">0</td>
@@ -5654,7 +5678,7 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3">0</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-weight: bold">peer_ss, n (%)</td>
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Peer SS, n (%)</td>
 <td class="gt_row gt_center" headers="n">36,485</td>
 <td class="gt_row gt_center" headers="stat_0"></td>
 <td class="gt_row gt_center" headers="stat_1"></td>
@@ -5662,23 +5686,23 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3"></td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    1</td>
+<td class="gt_row gt_left" headers="label">    Yes</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">31,915 (87)</td>
-<td class="gt_row gt_center" headers="stat_1">29,823 (82)</td>
-<td class="gt_row gt_center" headers="stat_2">1,536 (4.2)</td>
-<td class="gt_row gt_center" headers="stat_3">556 (1.5)</td>
+<td class="gt_row gt_center" headers="stat_1">29,823 (88)</td>
+<td class="gt_row gt_center" headers="stat_2">1,536 (88)</td>
+<td class="gt_row gt_center" headers="stat_3">556 (83)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    0</td>
+<td class="gt_row gt_left" headers="label">    No</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">4,570 (13)</td>
 <td class="gt_row gt_center" headers="stat_1">4,252 (12)</td>
-<td class="gt_row gt_center" headers="stat_2">205 (0.6)</td>
-<td class="gt_row gt_center" headers="stat_3">113 (0.3)</td>
+<td class="gt_row gt_center" headers="stat_2">205 (12)</td>
+<td class="gt_row gt_center" headers="stat_3">113 (17)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Missing values</td>
+<td class="gt_row gt_left" headers="label">    Missing values</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">0</td>
 <td class="gt_row gt_center" headers="stat_1">0</td>
@@ -5686,7 +5710,7 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3">0</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-weight: bold">teacher_ss, n (%)</td>
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Teacher SS, n (%)</td>
 <td class="gt_row gt_center" headers="n">36,485</td>
 <td class="gt_row gt_center" headers="stat_0"></td>
 <td class="gt_row gt_center" headers="stat_1"></td>
@@ -5694,23 +5718,23 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="stat_3"></td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    1</td>
+<td class="gt_row gt_left" headers="label">    Yes</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">20,521 (56)</td>
-<td class="gt_row gt_center" headers="stat_1">19,366 (53)</td>
-<td class="gt_row gt_center" headers="stat_2">852 (2.3)</td>
-<td class="gt_row gt_center" headers="stat_3">303 (0.8)</td>
+<td class="gt_row gt_center" headers="stat_1">19,366 (57)</td>
+<td class="gt_row gt_center" headers="stat_2">852 (49)</td>
+<td class="gt_row gt_center" headers="stat_3">303 (45)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    0</td>
+<td class="gt_row gt_left" headers="label">    No</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">15,964 (44)</td>
-<td class="gt_row gt_center" headers="stat_1">14,709 (40)</td>
-<td class="gt_row gt_center" headers="stat_2">889 (2.4)</td>
-<td class="gt_row gt_center" headers="stat_3">366 (1.0)</td>
+<td class="gt_row gt_center" headers="stat_1">14,709 (43)</td>
+<td class="gt_row gt_center" headers="stat_2">889 (51)</td>
+<td class="gt_row gt_center" headers="stat_3">366 (55)</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-style: italic">    Missing values</td>
+<td class="gt_row gt_left" headers="label">    Missing values</td>
 <td class="gt_row gt_center" headers="n"></td>
 <td class="gt_row gt_center" headers="stat_0">0</td>
 <td class="gt_row gt_center" headers="stat_1">0</td>
@@ -5786,21 +5810,21 @@ data:    ordinalRegres_substanceUse
  logit flexible  36485 -9283.86 18599.73 7(0)  3.98e-13 3.8e+04
 
 Coefficients:
-                         Estimate Std. Error z value Pr(&gt;|z|)    
-adult_ss                -0.866279   0.107525  -8.057 7.85e-16 ***
-peer_ss                  0.274691   0.091605   2.999 0.002712 ** 
-teacher_ss              -0.240153   0.062530  -3.841 0.000123 ***
-ptsd_total               0.086415   0.003873  22.312  &lt; 2e-16 ***
-grade.L                  1.631955   0.064763  25.199  &lt; 2e-16 ***
-grade.Q                 -0.030254   0.062568  -0.484 0.628716    
-grade.C                  0.067195   0.061482   1.093 0.274428    
-grade^4                  0.117342   0.059758   1.964 0.049572 *  
-grade^5                 -0.077252   0.057047  -1.354 0.175679    
-genderFemale            -0.194306   0.178790  -1.087 0.277134    
-ptsd_total:genderFemale -0.014853   0.005345  -2.779 0.005457 ** 
-adult_ss:genderFemale   -0.022415   0.151780  -0.148 0.882593    
-peer_ss:genderFemale    -0.034536   0.140895  -0.245 0.806364    
-teacher_ss:genderFemale -0.049591   0.090327  -0.549 0.582997    
+                            Estimate Std. Error z value Pr(&gt;|z|)    
+adult_ssYes                -0.866279   0.107525  -8.057 7.85e-16 ***
+peer_ssYes                  0.274691   0.091605   2.999 0.002712 ** 
+teacher_ssYes              -0.240153   0.062530  -3.841 0.000123 ***
+ptsd_total                  0.086415   0.003873  22.312  &lt; 2e-16 ***
+grade.L                     1.631955   0.064763  25.199  &lt; 2e-16 ***
+grade.Q                    -0.030254   0.062568  -0.484 0.628716    
+grade.C                     0.067195   0.061482   1.093 0.274428    
+grade^4                     0.117342   0.059758   1.964 0.049572 *  
+grade^5                    -0.077252   0.057047  -1.354 0.175679    
+genderFemale               -0.194306   0.178790  -1.087 0.277134    
+ptsd_total:genderFemale    -0.014853   0.005345  -2.779 0.005457 ** 
+adult_ssYes:genderFemale   -0.022415   0.151780  -0.148 0.882593    
+peer_ssYes:genderFemale    -0.034536   0.140895  -0.245 0.806364    
+teacher_ssYes:genderFemale -0.049591   0.090327  -0.549 0.582997    
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
@@ -5842,40 +5866,40 @@ Low|High   4.1039     0.1210   33.91</code></pre>
 <span></span>
 <span><span class="va">clm_coefs</span> <span class="co"># return calculated confidence intervals</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
-<pre><code>                           estimate         2.5 %       97.5 %  Std. Error
-None|Low                 2.70413936  2.4760275544  2.932251169 0.116383575
-Low|High                 4.10386173  3.8666435729  4.341079894 0.121029674
-adult_ss                -0.86627854 -1.0770269286 -0.655530147 0.107524689
-peer_ss                  0.27469115  0.0951457655  0.454236534 0.091604788
-teacher_ss              -0.24015325 -0.3627127295 -0.117593770 0.062530347
-ptsd_total               0.08641532  0.0788240119  0.094006634 0.003873118
-grade.L                  1.63195522  1.5050191229  1.758891319 0.064763315
-grade.Q                 -0.03025360 -0.1528861990  0.092378996 0.062567652
-grade.C                  0.06719537 -0.0533099592  0.187700706 0.061482313
-grade^4                  0.11734223  0.0002172061  0.234467247 0.059757663
-grade^5                 -0.07725248 -0.1890655665  0.034560606 0.057047493
-genderFemale            -0.19430558 -0.5447339462  0.156122783 0.178789982
-ptsd_total:genderFemale -0.01485271 -0.0253292060 -0.004376214 0.005345151
-adult_ss:genderFemale   -0.02241527 -0.3199038444  0.275073298 0.151779883
-peer_ss:genderFemale    -0.03453622 -0.3106913765  0.241618928 0.140895486
-teacher_ss:genderFemale -0.04959073 -0.2266318908  0.127450424 0.090327121
-                           z value      Pr(&gt;|z|)
-None|Low                23.2347164 2.030577e-119
-Low|High                33.9078971 5.095673e-252
-adult_ss                -8.0565547  7.847489e-16
-peer_ss                  2.9986549  2.711742e-03
-teacher_ss              -3.8405872  1.227404e-04
-ptsd_total              22.3115648 2.853375e-110
-grade.L                 25.1987597 4.133035e-140
-grade.Q                 -0.4835342  6.287165e-01
-grade.C                  1.0929220  2.744280e-01
-grade^4                  1.9636348  4.957246e-02
-grade^5                 -1.3541784  1.756795e-01
-genderFemale            -1.0867811  2.771335e-01
-ptsd_total:genderFemale -2.7787260  5.457253e-03
-adult_ss:genderFemale   -0.1476828  8.825931e-01
-peer_ss:genderFemale    -0.2451195  8.063639e-01
-teacher_ss:genderFemale -0.5490127  5.829968e-01</code></pre>
+<pre><code>                              estimate         2.5 %       97.5 %  Std. Error
+None|Low                    2.70413936  2.4760275544  2.932251169 0.116383575
+Low|High                    4.10386173  3.8666435729  4.341079894 0.121029674
+adult_ssYes                -0.86627854 -1.0770269286 -0.655530147 0.107524689
+peer_ssYes                  0.27469115  0.0951457655  0.454236534 0.091604788
+teacher_ssYes              -0.24015325 -0.3627127295 -0.117593770 0.062530347
+ptsd_total                  0.08641532  0.0788240119  0.094006634 0.003873118
+grade.L                     1.63195522  1.5050191229  1.758891319 0.064763315
+grade.Q                    -0.03025360 -0.1528861990  0.092378996 0.062567652
+grade.C                     0.06719537 -0.0533099592  0.187700706 0.061482313
+grade^4                     0.11734223  0.0002172061  0.234467247 0.059757663
+grade^5                    -0.07725248 -0.1890655665  0.034560606 0.057047493
+genderFemale               -0.19430558 -0.5447339462  0.156122783 0.178789982
+ptsd_total:genderFemale    -0.01485271 -0.0253292060 -0.004376214 0.005345151
+adult_ssYes:genderFemale   -0.02241527 -0.3199038444  0.275073298 0.151779883
+peer_ssYes:genderFemale    -0.03453622 -0.3106913765  0.241618928 0.140895486
+teacher_ssYes:genderFemale -0.04959073 -0.2266318908  0.127450424 0.090327121
+                              z value      Pr(&gt;|z|)
+None|Low                   23.2347164 2.030577e-119
+Low|High                   33.9078971 5.095673e-252
+adult_ssYes                -8.0565547  7.847489e-16
+peer_ssYes                  2.9986549  2.711742e-03
+teacher_ssYes              -3.8405872  1.227404e-04
+ptsd_total                 22.3115648 2.853375e-110
+grade.L                    25.1987597 4.133035e-140
+grade.Q                    -0.4835342  6.287165e-01
+grade.C                     1.0929220  2.744280e-01
+grade^4                     1.9636348  4.957246e-02
+grade^5                    -1.3541784  1.756795e-01
+genderFemale               -1.0867811  2.771335e-01
+ptsd_total:genderFemale    -2.7787260  5.457253e-03
+adult_ssYes:genderFemale   -0.1476828  8.825931e-01
+peer_ssYes:genderFemale    -0.2451195  8.063639e-01
+teacher_ssYes:genderFemale -0.5490127  5.829968e-01</code></pre>
 </div>
 </div>
 </section><section id="evaluate-model-fit" class="level2"><h2 class="anchored" data-anchor-id="evaluate-model-fit">Evaluate model fit</h2>
@@ -5936,9 +5960,9 @@ $Warnings
 Test for            X2  df  probability 
 ------------------------------------------------------------ 
 Omnibus             39.18   14  0
-adult_ss            0.28    1   0.6
-peer_ss             4.94    1   0.03
-teacher_ss          0   1   0.97
+adult_ssYes         0.28    1   0.6
+peer_ssYes          4.94    1   0.03
+teacher_ssYes           0   1   0.97
 ptsd_total          0.38    1   0.54
 grade.L             0.57    1   0.45
 grade.Q             0.13    1   0.72
@@ -5947,9 +5971,9 @@ grade^4             0.01    1   0.94
 grade^5             0.42    1   0.52
 genderFemale            2.14    1   0.14
 ptsd_total:genderFemale 2.25    1   0.13
-adult_ss:genderFemale       1.63    1   0.2
-peer_ss:genderFemale        0.38    1   0.54
-teacher_ss:genderFemale 0.02    1   0.88
+adult_ssYes:genderFemale    1.63    1   0.2
+peer_ssYes:genderFemale 0.38    1   0.54
+teacher_ssYes:genderFemale  0.02    1   0.88
 ------------------------------------------------------------ 
 
 H0: Parallel Regression Assumption holds</code></pre>
@@ -6028,23 +6052,23 @@ H0: Parallel Regression Assumption holds</code></pre>
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">odds_ratio_clm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">all_clm_coef_ci</span><span class="op">)</span></span>
 <span><span class="va">odds_ratio_clm</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
-<pre><code>                          estimate      2.5 %     97.5 %
-None|Low                14.9414520 11.8939225 18.7698370
-Low|High                60.5737562 47.7817407 76.7904201
-adult_ss                 0.4205136  0.3406067  0.5191668
-peer_ss                  1.3161241  1.0998192  1.5749705
-teacher_ss               0.7865073  0.6957863  0.8890571
-ptsd_total               1.0902590  1.0820139  1.0985670
-grade.L                  5.1138637  4.5042398  5.8059968
-grade.Q                  0.9701995  0.8582274  1.0967804
-grade.C                  1.0695044  0.9480861  1.2064724
-grade^4                  1.1245042  1.0002172  1.2642351
-grade^5                  0.9256561  0.8277322  1.0351648
-genderFemale             0.8234062  0.5799961  1.1689697
-ptsd_total:genderFemale  0.9852570  0.9749889  0.9956333
-adult_ss:genderFemale    0.9778341  0.7262189  1.3166272
-peer_ss:genderFemale     0.9660533  0.7329400  1.2733089
-teacher_ss:genderFemale  0.9516188  0.7972142  1.1359286</code></pre>
+<pre><code>                             estimate      2.5 %     97.5 %
+None|Low                   14.9414520 11.8939225 18.7698370
+Low|High                   60.5737562 47.7817407 76.7904201
+adult_ssYes                 0.4205136  0.3406067  0.5191668
+peer_ssYes                  1.3161241  1.0998192  1.5749705
+teacher_ssYes               0.7865073  0.6957863  0.8890571
+ptsd_total                  1.0902590  1.0820139  1.0985670
+grade.L                     5.1138637  4.5042398  5.8059968
+grade.Q                     0.9701995  0.8582274  1.0967804
+grade.C                     1.0695044  0.9480861  1.2064724
+grade^4                     1.1245042  1.0002172  1.2642351
+grade^5                     0.9256561  0.8277322  1.0351648
+genderFemale                0.8234062  0.5799961  1.1689697
+ptsd_total:genderFemale     0.9852570  0.9749889  0.9956333
+adult_ssYes:genderFemale    0.9778341  0.7262189  1.3166272
+peer_ssYes:genderFemale     0.9660533  0.7329400  1.2733089
+teacher_ssYes:genderFemale  0.9516188  0.7972142  1.1359286</code></pre>
 </div>
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb34"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">or_tibble</span> <span class="op">&lt;-</span> <span class="fu">as_tibble</span><span class="op">(</span><span class="va">odds_ratio_clm</span><span class="op">)</span> <span class="co"># convert to tibble format for easy in-text reference</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -6168,16 +6192,16 @@ ordinalRegres_substanceUse[ordinalRegres_substanceUse$gender == &quot;Male&quot;
  logit flexible  17969 -4856.52 9735.03 7(0)  5.49e-12 5.9e+03
 
 Coefficients:
-            Estimate Std. Error z value Pr(&gt;|z|)    
-adult_ss   -0.856591   0.107673  -7.955 1.78e-15 ***
-peer_ss     0.268250   0.091825   2.921 0.003485 ** 
-teacher_ss -0.240532   0.062623  -3.841 0.000123 ***
-ptsd_total  0.085306   0.003878  21.998  &lt; 2e-16 ***
-grade.L     1.674467   0.086520  19.354  &lt; 2e-16 ***
-grade.Q     0.055291   0.084488   0.654 0.512837    
-grade.C    -0.023349   0.083841  -0.278 0.780632    
-grade^4     0.109316   0.082444   1.326 0.184861    
-grade^5    -0.052605   0.080001  -0.658 0.510826    
+               Estimate Std. Error z value Pr(&gt;|z|)    
+adult_ssYes   -0.856591   0.107673  -7.955 1.78e-15 ***
+peer_ssYes     0.268250   0.091825   2.921 0.003485 ** 
+teacher_ssYes -0.240532   0.062623  -3.841 0.000123 ***
+ptsd_total     0.085306   0.003878  21.998  &lt; 2e-16 ***
+grade.L        1.674467   0.086520  19.354  &lt; 2e-16 ***
+grade.Q        0.055291   0.084488   0.654 0.512837    
+grade.C       -0.023349   0.083841  -0.278 0.780632    
+grade^4        0.109316   0.082444   1.326 0.184861    
+grade^5       -0.052605   0.080001  -0.658 0.510826    
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
@@ -6196,16 +6220,16 @@ ordinalRegres_substanceUse[ordinalRegres_substanceUse$gender == &quot;Female&quo
  logit flexible  18516 -4411.02 8844.05 7(0)  1.06e-10 1.1e+04
 
 Coefficients:
-            Estimate Std. Error z value Pr(&gt;|z|)    
-adult_ss   -0.895009   0.107235  -8.346  &lt; 2e-16 ***
-peer_ss     0.240148   0.106976   2.245   0.0248 *  
-teacher_ss -0.287535   0.065326  -4.402 1.07e-05 ***
-ptsd_total  0.072111   0.003688  19.551  &lt; 2e-16 ***
-grade.L     1.587735   0.098034  16.196  &lt; 2e-16 ***
-grade.Q    -0.126128   0.093833  -1.344   0.1789    
-grade.C     0.174127   0.090811   1.917   0.0552 .  
-grade^4     0.120139   0.086903   1.382   0.1668    
-grade^5    -0.097613   0.081488  -1.198   0.2310    
+               Estimate Std. Error z value Pr(&gt;|z|)    
+adult_ssYes   -0.895009   0.107235  -8.346  &lt; 2e-16 ***
+peer_ssYes     0.240148   0.106976   2.245   0.0248 *  
+teacher_ssYes -0.287535   0.065326  -4.402 1.07e-05 ***
+ptsd_total     0.072111   0.003688  19.551  &lt; 2e-16 ***
+grade.L        1.587735   0.098034  16.196  &lt; 2e-16 ***
+grade.Q       -0.126128   0.093833  -1.344   0.1789    
+grade.C        0.174127   0.090811   1.917   0.0552 .  
+grade^4        0.120139   0.086903   1.382   0.1668    
+grade^5       -0.097613   0.081488  -1.198   0.2310    
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
