@@ -3202,7 +3202,7 @@ vertical-align: -.125em;
 <pre><code>tibble [36,485 × 24] (S3: tbl_df/tbl/data.frame)
  $ region              : chr [1:36485] &quot;Arecibo&quot; &quot;Arecibo&quot; &quot;Arecibo&quot; &quot;Arecibo&quot; ...
  $ district            : chr [1:36485] &quot;Arecibo&quot; &quot;Arecibo&quot; &quot;Arecibo&quot; &quot;Arecibo&quot; ...
- $ grade               : Factor w/ 6 levels &quot;Grade 7&quot;,&quot;Grade 8&quot;,..: 2 2 2 2 2 2 1 1 1 2 ...
+ $ grade               : num [1:36485] 8 8 8 8 8 8 7 7 7 8 ...
  $ adult_ss            : Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 2 2 2 2 2 2 2 2 2 2 ...
  $ peer_ss             : Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 2 2 2 2 2 2 2 1 2 2 ...
  $ teacher_ss          : Factor w/ 2 levels &quot;No&quot;,&quot;Yes&quot;: 2 2 1 2 1 2 1 1 2 2 ...
@@ -3230,13 +3230,13 @@ vertical-align: -.125em;
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">ordinalRegres_substanceUse</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
-<pre><code>    region            district              grade      adult_ss    peer_ss    
- Length:36485       Length:36485       Grade 7 :6754   No : 1859   No : 4570  
- Class :character   Class :character   Grade 8 :6620   Yes:34626   Yes:31915  
- Mode  :character   Mode  :character   Grade 9 :5807                          
-                                       Grade 10:5886                          
-                                       Grade 11:6043                          
-                                       Grade 12:5375                          
+<pre><code>    region            district             grade        adult_ss    peer_ss    
+ Length:36485       Length:36485       Min.   : 7.000   No : 1859   No : 4570  
+ Class :character   Class :character   1st Qu.: 8.000   Yes:34626   Yes:31915  
+ Mode  :character   Mode  :character   Median : 9.000                          
+                                       Mean   : 9.383                          
+                                       3rd Qu.:11.000                          
+                                       Max.   :12.000                          
  teacher_ss        s1               s2               s3               s4       
  No :15964   Min.   :0.0000   Min.   :0.0000   Min.   :0.0000   Min.   :0.000  
  Yes:20521   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.000  
@@ -3347,10 +3347,10 @@ substanceUse  Male Female
 <span>      data <span class="op">=</span> <span class="va">ordinalRegres_substanceUse</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>            grade
-substanceUse Grade 7 Grade 8 Grade 9 Grade 10 Grade 11 Grade 12
-        None    6609    6422    5500     5476     5468     4600
-        Low      104     146     222      304      415      550
-        High      41      52      85      106      160      225</code></pre>
+substanceUse    7    8    9   10   11   12
+        None 6609 6422 5500 5476 5468 4600
+        Low   104  146  222  304  415  550
+        High   41   52   85  106  160  225</code></pre>
 </div>
 </div>
 </section></section></section><section id="ordinal-logit-multiple-linear-regression" class="level1"><h1>Ordinal (logit) multiple linear regression</h1>
@@ -3409,31 +3409,27 @@ substanceUse ~ adult_ss + peer_ss + teacher_ss + ptsd_total + grade + gender + g
 data:    ordinalRegres_substanceUse
 
  link  threshold nobs  logLik   AIC      niter max.grad cond.H 
- logit flexible  36485 -9283.86 18599.73 7(0)  6.54e-12 4.4e+04
+ logit flexible  36485 -9287.90 18599.80 7(0)  2.28e-11 6.2e+04
 
 Coefficients:
                             Estimate Std. Error z value Pr(&gt;|z|)    
-adult_ssYes                -0.866279   0.107525  -8.057 7.85e-16 ***
-peer_ssYes                  0.274691   0.091605   2.999 0.002712 ** 
-teacher_ssYes              -0.240153   0.062530  -3.841 0.000123 ***
-ptsd_total                  0.086415   0.003873  22.312  &lt; 2e-16 ***
-gradeGrade 8                0.352118   0.111908   3.146 0.001652 ** 
-gradeGrade 9                0.920982   0.103807   8.872  &lt; 2e-16 ***
-gradeGrade 10               1.173697   0.099756  11.766  &lt; 2e-16 ***
-gradeGrade 11               1.501000   0.096114  15.617  &lt; 2e-16 ***
-gradeGrade 12               1.990911   0.093927  21.196  &lt; 2e-16 ***
-genderFemale               -0.194306   0.178790  -1.087 0.277134    
-ptsd_total:genderFemale    -0.014853   0.005345  -2.779 0.005457 ** 
-adult_ssYes:genderFemale   -0.022415   0.151780  -0.148 0.882593    
-peer_ssYes:genderFemale    -0.034536   0.140895  -0.245 0.806364    
-teacher_ssYes:genderFemale -0.049591   0.090327  -0.549 0.582997    
+adult_ssYes                -0.864663   0.107521  -8.042 8.85e-16 ***
+peer_ssYes                  0.273027   0.091584   2.981 0.002872 ** 
+teacher_ssYes              -0.241849   0.062463  -3.872 0.000108 ***
+ptsd_total                  0.086179   0.003869  22.276  &lt; 2e-16 ***
+grade                       0.387776   0.014076  27.549  &lt; 2e-16 ***
+genderFemale               -0.195315   0.178714  -1.093 0.274442    
+ptsd_total:genderFemale    -0.014565   0.005342  -2.726 0.006403 ** 
+adult_ssYes:genderFemale   -0.023452   0.151757  -0.155 0.877185    
+peer_ssYes:genderFemale    -0.034089   0.140895  -0.242 0.808823    
+teacher_ssYes:genderFemale -0.049490   0.090310  -0.548 0.583690    
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
 Threshold coefficients:
          Estimate Std. Error z value
-None|Low   3.6939     0.1412   26.16
-Low|High   5.0936     0.1453   35.06</code></pre>
+None|Low   6.3857     0.1824   35.01
+Low|High   7.7850     0.1862   41.82</code></pre>
 </div>
 </div>
 </section><section id="calculate-confidence-intervals" class="level2"><h2 class="anchored" data-anchor-id="calculate-confidence-intervals">Calculate confidence intervals</h2>
@@ -3469,39 +3465,31 @@ Low|High   5.0936     0.1453   35.06</code></pre>
 <span><span class="va">clm_coefs</span> <span class="co"># return calculated confidence intervals</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
 <pre><code>                              estimate       2.5 %       97.5 %  Std. Error
-None|Low                    3.69392403  3.41712807  3.970719992 0.141222429
-Low|High                    5.09364640  4.80891790  5.378374905 0.145269644
-adult_ssYes                -0.86627854 -1.07702693 -0.655530147 0.107524689
-peer_ssYes                  0.27469115  0.09514577  0.454236534 0.091604788
-teacher_ssYes              -0.24015325 -0.36271273 -0.117593770 0.062530347
-ptsd_total                  0.08641532  0.07882401  0.094006634 0.003873118
-gradeGrade 8                0.35211784  0.13277736  0.571458313 0.111908406
-gradeGrade 9                0.92098194  0.71751972  1.124444155 0.103807254
-gradeGrade 10               1.17369730  0.97817565  1.369218940 0.099755941
-gradeGrade 11               1.50099980  1.31261588  1.689383718 0.096114243
-gradeGrade 12               1.99091115  1.80681340  2.175008890 0.093927421
-genderFemale               -0.19430558 -0.54473395  0.156122783 0.178789982
-ptsd_total:genderFemale    -0.01485271 -0.02532921 -0.004376214 0.005345151
-adult_ssYes:genderFemale   -0.02241527 -0.31990384  0.275073298 0.151779883
-peer_ssYes:genderFemale    -0.03453622 -0.31069138  0.241618928 0.140895486
-teacher_ssYes:genderFemale -0.04959073 -0.22663189  0.127450424 0.090327121
+None|Low                    6.38565726  6.02819317  6.743121345 0.182379636
+Low|High                    7.78496119  7.42010130  8.149821084 0.186153005
+adult_ssYes                -0.86466262 -1.07540289 -0.653922344 0.107520548
+peer_ssYes                  0.27302656  0.09352193  0.452531182 0.091583992
+teacher_ssYes              -0.24184859 -0.36427599 -0.119421191 0.062462960
+ptsd_total                  0.08617895  0.07859647  0.093761420 0.003868609
+grade                       0.38777580  0.36018733  0.415364262 0.014075748
+genderFemale               -0.19531511 -0.54559500  0.154964786 0.178714231
+ptsd_total:genderFemale    -0.01456537 -0.02503632 -0.004094419 0.005342321
+adult_ssYes:genderFemale   -0.02345227 -0.32089526  0.273990724 0.151756629
+peer_ssYes:genderFemale    -0.03408866 -0.31024218  0.242064868 0.140894656
+teacher_ssYes:genderFemale -0.04949000 -0.22649695  0.127516942 0.090309666
                               z value      Pr(&gt;|z|)
-None|Low                   26.1567802 8.251697e-151
-Low|High                   35.0633915 2.437362e-269
-adult_ssYes                -8.0565547  7.847489e-16
-peer_ssYes                  2.9986549  2.711742e-03
-teacher_ssYes              -3.8405872  1.227404e-04
-ptsd_total                 22.3115648 2.853375e-110
-gradeGrade 8                3.1464824  1.652472e-03
-gradeGrade 9                8.8720384  7.181903e-19
-gradeGrade 10              11.7656882  5.864619e-32
-gradeGrade 11              15.6168300  5.591738e-55
-gradeGrade 12              21.1962719  1.033677e-99
-genderFemale               -1.0867811  2.771335e-01
-ptsd_total:genderFemale    -2.7787260  5.457253e-03
-adult_ssYes:genderFemale   -0.1476828  8.825931e-01
-peer_ssYes:genderFemale    -0.2451195  8.063639e-01
-teacher_ssYes:genderFemale -0.5490127  5.829968e-01</code></pre>
+None|Low                   35.0129949 1.427000e-268
+Low|High                   41.8202283  0.000000e+00
+adult_ssYes                -8.0418361  8.850225e-16
+peer_ssYes                  2.9811603  2.871585e-03
+teacher_ssYes              -3.8718721  1.080026e-04
+ptsd_total                 22.2764660 6.249896e-110
+grade                      27.5492142 4.522343e-167
+genderFemale               -1.0928906  2.744418e-01
+ptsd_total:genderFemale    -2.7264120  6.402702e-03
+adult_ssYes:genderFemale   -0.1545387  8.771850e-01
+peer_ssYes:genderFemale    -0.2419443  8.088233e-01
+teacher_ssYes:genderFemale -0.5480034  5.836896e-01</code></pre>
 </div>
 </div>
 </section><section id="evaluate-model-fit" class="level2"><h2 class="anchored" data-anchor-id="evaluate-model-fit">Evaluate model fit</h2>
@@ -3517,13 +3505,13 @@ Null:  &quot;clm, substanceUse ~ 1, ordinalRegres_substanceUse, logit&quot;
 
 $Pseudo.R.squared.for.model.vs.null
                              Pseudo.R.squared
-McFadden                            0.0987178
-Cox and Snell (ML)                  0.0542164
-Nagelkerke (Cragg and Uhler)        0.1256630
+McFadden                            0.0983259
+Cox and Snell (ML)                  0.0540071
+Nagelkerke (Cragg and Uhler)        0.1251780
 
 $Likelihood.ratio.test
  Df.diff LogLik.diff  Chisq p.value
-     -14     -1016.9 2033.7       0
+     -10     -1012.8 2025.7       0
 
 $Number.of.observations
             
@@ -3561,21 +3549,17 @@ $Warnings
 <pre><code>------------------------------------------------------------ 
 Test for            X2  df  probability 
 ------------------------------------------------------------ 
-Omnibus             39.18   14  0
-adult_ssYes         0.28    1   0.6
-peer_ssYes          4.94    1   0.03
-teacher_ssYes           0   1   0.97
-ptsd_total          0.38    1   0.54
-gradeGrade 8            0.19    1   0.67
-gradeGrade 9            0.07    1   0.79
-gradeGrade 10           0.68    1   0.41
-gradeGrade 11           0.33    1   0.57
-gradeGrade 12           0.52    1   0.47
-genderFemale            2.14    1   0.14
-ptsd_total:genderFemale 2.25    1   0.13
+Omnibus             38.61   10  0
+adult_ssYes         0.28    1   0.59
+peer_ssYes          5.01    1   0.03
+teacher_ssYes           0   1   0.98
+ptsd_total          0.37    1   0.55
+grade               0.4 1   0.52
+genderFemale            2.17    1   0.14
+ptsd_total:genderFemale 2.24    1   0.13
 adult_ssYes:genderFemale    1.63    1   0.2
-peer_ssYes:genderFemale 0.38    1   0.54
-teacher_ssYes:genderFemale  0.02    1   0.88
+peer_ssYes:genderFemale 0.39    1   0.53
+teacher_ssYes:genderFemale  0.02    1   0.89
 ------------------------------------------------------------ 
 
 H0: Parallel Regression Assumption holds</code></pre>
@@ -3586,41 +3570,37 @@ H0: Parallel Regression Assumption holds</code></pre>
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb24"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">clm_tibble</span> <span class="op">&lt;-</span> <span class="fu">as_tibble</span><span class="op">(</span><span class="va">clm_coefs</span><span class="op">)</span></span>
 <span><span class="va">clm_tibble</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 16 × 6
+<pre><code># A tibble: 12 × 6
    estimate `2.5 %` `97.5 %` `Std. Error` `z value` `Pr(&gt;|z|)`
       &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
- 1   3.69    3.42    3.97         0.141      26.2    8.25e-151
- 2   5.09    4.81    5.38         0.145      35.1    2.44e-269
- 3  -0.866  -1.08   -0.656        0.108      -8.06   7.85e- 16
- 4   0.275   0.0951  0.454        0.0916      3.00   2.71e-  3
- 5  -0.240  -0.363  -0.118        0.0625     -3.84   1.23e-  4
- 6   0.0864  0.0788  0.0940       0.00387    22.3    2.85e-110
- 7   0.352   0.133   0.571        0.112       3.15   1.65e-  3
- 8   0.921   0.718   1.12         0.104       8.87   7.18e- 19
- 9   1.17    0.978   1.37         0.0998     11.8    5.86e- 32
-10   1.50    1.31    1.69         0.0961     15.6    5.59e- 55
-11   1.99    1.81    2.18         0.0939     21.2    1.03e- 99
-12  -0.194  -0.545   0.156        0.179      -1.09   2.77e-  1
-13  -0.0149 -0.0253 -0.00438      0.00535    -2.78   5.46e-  3
-14  -0.0224 -0.320   0.275        0.152      -0.148  8.83e-  1
-15  -0.0345 -0.311   0.242        0.141      -0.245  8.06e-  1
-16  -0.0496 -0.227   0.127        0.0903     -0.549  5.83e-  1</code></pre>
+ 1   6.39    6.03    6.74         0.182      35.0    1.43e-268
+ 2   7.78    7.42    8.15         0.186      41.8    0        
+ 3  -0.865  -1.08   -0.654        0.108      -8.04   8.85e- 16
+ 4   0.273   0.0935  0.453        0.0916      2.98   2.87e-  3
+ 5  -0.242  -0.364  -0.119        0.0625     -3.87   1.08e-  4
+ 6   0.0862  0.0786  0.0938       0.00387    22.3    6.25e-110
+ 7   0.388   0.360   0.415        0.0141     27.5    4.52e-167
+ 8  -0.195  -0.546   0.155        0.179      -1.09   2.74e-  1
+ 9  -0.0146 -0.0250 -0.00409      0.00534    -2.73   6.40e-  3
+10  -0.0235 -0.321   0.274        0.152      -0.155  8.77e-  1
+11  -0.0341 -0.310   0.242        0.141      -0.242  8.09e-  1
+12  -0.0495 -0.226   0.128        0.0903     -0.548  5.84e-  1</code></pre>
 </div>
 </div>
 <p>Only significant coefficients are interpreted below. Model intercepts are included for reference, but are typically not interpreted.</p>
 <section id="significant-predictor-variables" class="level3"><h3 class="anchored" data-anchor-id="significant-predictor-variables">Significant predictor variables</h3>
 <ul>
-<li><p><strong>social_support_adult:</strong> For those students that endorsed having <strong>adult social support at home</strong> the log odds of high substance use endorsement decreased significantly by -0.87.</p></li>
+<li><p><strong>social_support_adult:</strong> For those students that endorsed having <strong>adult social support at home</strong> the log odds of high substance use endorsement decreased significantly by -0.86.</p></li>
 <li><p><strong>social_support_peer:</strong> For those students that endorsed having peer social support the log odds of high substance use endorsement increased significantly by 0.27.</p></li>
 <li><p><strong>social_support_teacher/counselor:</strong> For those students that endorsed having teacher or counselor social support at school the log odds of high substance use endorsement decreased significantly by -0.24.</p></li>
 <li><p><strong>ptsd_total</strong> For every one unit increase in ptsd symptoms the log odds of high substance use increased significantly by 0.09.</p></li>
-<li><p><strong>grade:</strong> For each increase in grade level the log odds of high substance use increased significantly by 0.35 did not appear significant.</p></li>
-<li><p><strong>Interaction: gender &amp; ptsd:</strong> This coefficient describes the interaction between gender and ptsd symptoms. With all variables held constant, we expect that students who identify as female and who experience ptsd symptoms to endorse substance use by a log odds of 1.17 less than students who identify as male and experience ptsd symptoms.</p></li>
+<li><p><strong>grade:</strong> For each increase in grade level the log odds of high substance use increased significantly by 0.39 did not appear significant.</p></li>
+<li><p><strong>Interaction: gender &amp; ptsd:</strong> This coefficient describes the interaction between gender and ptsd symptoms. With all variables held constant, we expect that students who identify as female and who experience ptsd symptoms to endorse substance use by a log odds of -0.01 less than students who identify as male and experience ptsd symptoms.</p></li>
 </ul></section><section id="significant-intercepts" class="level3"><h3 class="anchored" data-anchor-id="significant-intercepts">Significant intercepts</h3>
 <ul>
 <li><p>Please note: model intercepts are generally not interpreted.</p></li>
-<li><p><strong>No Substance Use Intercept:</strong> This intercept coefficient value (3.69) represents the log odds of a student’s self-endorsement of substance use having fallen within the <em>no substance use category</em> given values of 0 for all other coefficients (which is impossible).</p></li>
-<li><p><strong>Low Substance Use Intercept:</strong> This intercept coefficient value (5.09) is the log odds of a student’s self-endorsement of substance use having fallen within the <em>low substance use category</em> given values of 0 for all other coefficients (also impossible).</p></li>
+<li><p><strong>No Substance Use Intercept:</strong> This intercept coefficient value (6.39) represents the log odds of a student’s self-endorsement of substance use having fallen within the <em>no substance use category</em> given values of 0 for all other coefficients (which is impossible).</p></li>
+<li><p><strong>Low Substance Use Intercept:</strong> This intercept coefficient value (7.78) is the log odds of a student’s self-endorsement of substance use having fallen within the <em>low substance use category</em> given values of 0 for all other coefficients (also impossible).</p></li>
 </ul></section></section><section id="fit-and-significance-for-null-and-alternative-models-using-broomglance" class="level2"><h2 class="anchored" data-anchor-id="fit-and-significance-for-null-and-alternative-models-using-broomglance">Fit and significance for null and alternative models using <code>broom::glance()</code>:</h2>
 <div class="cell">
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb26"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">clm_fit_stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span></span>
@@ -3635,7 +3615,7 @@ H0: Parallel Regression Assumption holds</code></pre>
 <pre><code># A tibble: 2 × 6
     edf    aic    bic log_lik    df_residual  nobs
 * &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;logLik&gt;         &lt;dbl&gt; &lt;dbl&gt;
-1    16 18600. 18736.  -9283.863       36469 36485
+1    12 18600. 18702.  -9287.899       36473 36485
 2     2 20605. 20622. -10300.728       36483 36485</code></pre>
 </div>
 </div>
@@ -3654,23 +3634,19 @@ H0: Parallel Regression Assumption holds</code></pre>
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb28"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">odds_ratio_clm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">exp</a></span><span class="op">(</span><span class="va">all_clm_coef_ci</span><span class="op">)</span></span>
 <span><span class="va">odds_ratio_clm</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
-<pre><code>                              estimate       2.5 %      97.5 %
-None|Low                    40.2022929  30.4817477  53.0226930
-Low|High                   162.9830818 122.5988816 216.6698801
-adult_ssYes                  0.4205136   0.3406067   0.5191668
-peer_ssYes                   1.3161241   1.0998192   1.5749705
-teacher_ssYes                0.7865073   0.6957863   0.8890571
-ptsd_total                   1.0902590   1.0820139   1.0985670
-gradeGrade 8                 1.4220761   1.1419957   1.7708476
-gradeGrade 9                 2.5117556   2.0493440   3.0785052
-gradeGrade 10                3.2339273   2.6595998   3.9322781
-gradeGrade 11                4.4861721   3.7158813   5.4161418
-gradeGrade 12                7.3222023   6.0910069   8.8022634
-genderFemale                 0.8234062   0.5799961   1.1689697
-ptsd_total:genderFemale      0.9852570   0.9749889   0.9956333
-adult_ssYes:genderFemale     0.9778341   0.7262189   1.3166272
-peer_ssYes:genderFemale      0.9660533   0.7329400   1.2733089
-teacher_ssYes:genderFemale   0.9516188   0.7972142   1.1359286</code></pre>
+<pre><code>                               estimate        2.5 %       97.5 %
+None|Low                    593.2745392  414.9645821  848.2041456
+Low|High                   2404.1728472 1669.2025932 3462.7594654
+adult_ssYes                   0.4211936    0.3411603    0.5200021
+peer_ssYes                    1.3139351    1.0980347    1.5722869
+teacher_ssYes                 0.7851751    0.6946994    0.8874339
+ptsd_total                    1.0900014    1.0817677    1.0982977
+grade                         1.4736993    1.4335979    1.5149225
+genderFemale                  0.8225754    0.5794969    1.1676168
+ptsd_total:genderFemale       0.9855402    0.9752745    0.9959140
+adult_ssYes:genderFemale      0.9768206    0.7254992    1.3152026
+peer_ssYes:genderFemale       0.9664858    0.7332693    1.2738768
+teacher_ssYes:genderFemale    0.9517147    0.7973218    1.1360041</code></pre>
 </div>
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb30"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">or_tibble</span> <span class="op">&lt;-</span> <span class="fu">as_tibble</span><span class="op">(</span><span class="va">odds_ratio_clm</span><span class="op">)</span> <span class="co"># convert to tibble format for easy in-text reference</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
@@ -3678,43 +3654,28 @@ teacher_ssYes:genderFemale   0.9516188   0.7972142   1.1359286</code></pre>
 <section id="significant-predictor-variables-1" class="level4"><h4 class="anchored" data-anchor-id="significant-predictor-variables-1">Significant predictor variables</h4>
 <ul>
 <li><p>For students that endorsed having <strong>social support from an adult at home</strong>, the odds of endorsing high substance use decrease by a factor of approximately 0.42.</p></li>
-<li><p>For students that endorsed having <strong>social support from at least one peer</strong>, the odds of endorsing high substance use increased by a factor of approximately 1.32,</p></li>
+<li><p>For students that endorsed having <strong>social support from at least one peer</strong>, the odds of endorsing high substance use increased by a factor of approximately 1.31,</p></li>
 <li><p>For students that endorsed having <strong>social support from a counselor or teacher at school</strong>, the odds of endorsing high substance use decreased by a factor of approximately 0.79.</p></li>
 <li><p>For each one unit increase in <strong>PTSD Symptom Total</strong>, the odds of a student endorsing high substance use increased by a factor of approximately 1.09.</p></li>
-<li><p>For each increase in <strong>Grade level</strong>, the odds of endorsing high substance use increased by a factor of approximately 1.42,</p></li>
-<li><p>Lastly, an interaction was evidenced, such that if a student was <strong>female and experiencing ptsd symptoms</strong>, the odds of endorsing high substance use decreased by a factor of approximately 3.23 when compared to males experiencing ptsd symptoms.</p></li>
+<li><p>For each increase in <strong>Grade level</strong>, the odds of endorsing high substance use increased by a factor of approximately 1.47,</p></li>
+<li><p>Lastly, an interaction was evidenced, such that if a student was <strong>female and experiencing ptsd symptoms</strong>, the odds of endorsing high substance use decreased by a factor of approximately 0.99 when compared to males experiencing ptsd symptoms.</p></li>
 </ul></section><section id="significant-intercepts-1" class="level4"><h4 class="anchored" data-anchor-id="significant-intercepts-1">Significant Intercepts</h4>
 <ul>
 <li><p>Please note: model intercepts are generally not interpreted.</p></li>
-<li><p><strong>No Substance Use Intercept:</strong> This intercept coefficient value (40.2) represents the odds of a student’s self-endorsement of substance use having fallen within the <em>no substance use category</em> given values of 0 for all other coefficients.</p></li>
-<li><p><strong>Low Substance Use Intercept:</strong> This intercept coefficient value (162.98) is the log odds of a student’s self-endorsement of substance use having fallen within the <em>low substance use category</em> given values of 0 for all other coefficients.</p></li>
+<li><p><strong>No Substance Use Intercept:</strong> This intercept coefficient value (593.27) represents the odds of a student’s self-endorsement of substance use having fallen within the <em>no substance use category</em> given values of 0 for all other coefficients.</p></li>
+<li><p><strong>Low Substance Use Intercept:</strong> This intercept coefficient value (2404.17) is the log odds of a student’s self-endorsement of substance use having fallen within the <em>low substance use category</em> given values of 0 for all other coefficients.</p></li>
 </ul></section></section><section id="formatted-regression-table" class="level2"><h2 class="anchored" data-anchor-id="formatted-regression-table">Formatted regression table</h2>
 <section id="jama-table-for-regression-v1" class="level3"><h3 class="anchored" data-anchor-id="jama-table-for-regression-v1">JAMA Table for Regression (v1)</h3>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Change grade to numeric </span></span>
-<span><span class="va">clm_lm_table</span> <span class="op">&lt;-</span> <span class="fu">clm</span><span class="op">(</span><span class="va">substanceUse</span> <span class="op">~</span>  </span>
-<span>                              <span class="va">adult_ss</span> <span class="op">+</span> </span>
-<span>                              <span class="va">peer_ss</span> <span class="op">+</span> </span>
-<span>                              <span class="va">teacher_ss</span> <span class="op">+</span></span>
-<span>                              <span class="va">ptsd_total</span> <span class="op">+</span> </span>
-<span>                              <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">grade</span><span class="op">)</span> <span class="op">+</span> </span>
-<span>                              <span class="va">gender</span> <span class="op">+</span> </span>
-<span>                              <span class="va">gender</span><span class="op">*</span><span class="va">ptsd_total</span> <span class="op">+</span> </span>
-<span>                              <span class="va">gender</span><span class="op">*</span><span class="va">adult_ss</span> <span class="op">+</span> </span>
-<span>                              <span class="va">gender</span><span class="op">*</span><span class="va">peer_ss</span> <span class="op">+</span> </span>
-<span>                              <span class="va">gender</span><span class="op">*</span><span class="va">teacher_ss</span>, </span>
-<span>                            data <span class="op">=</span> <span class="va">ordinalRegres_substanceUse</span>, </span>
-<span>                            link <span class="op">=</span> <span class="st">&quot;logit&quot;</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">reset_gtsummary_theme</span><span class="op">(</span><span class="op">)</span></span>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">reset_gtsummary_theme</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">theme_gtsummary_journal</span><span class="op">(</span>journal <span class="op">=</span> <span class="st">&quot;jama&quot;</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stderr">
 <pre><code>Setting theme `JAMA`</code></pre>
 </div>
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">fancy_ord_regres_table</span> <span class="op">&lt;-</span> <span class="fu">tbl_regression</span><span class="op">(</span></span>
-<span>  <span class="va">clm_lm_table</span>,</span>
+<span>  <span class="va">clm_lm</span>,</span>
 <span>  exponentiate <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">&quot;as.numeric(grade)&quot;</span> <span class="op">~</span> <span class="st">&quot;grade&quot;</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">&quot;grade&quot;</span> <span class="op">~</span> <span class="st">&quot;Grade&quot;</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>  <span class="fu">modify_header</span><span class="op">(</span></span>
 <span>    <span class="va">label</span> <span class="op">~</span> <span class="st">&quot;Predictor&quot;</span>,</span>
 <span>    <span class="va">estimate</span> <span class="op">~</span> <span class="st">&quot;OR Estimates (95% CI)&quot;</span>,</span>
@@ -3726,20 +3687,20 @@ teacher_ssYes:genderFemale   0.9516188   0.7972142   1.1359286</code></pre>
 <span><span class="va">fancy_ord_regres_table</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
-<div id="souiycvfnj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#souiycvfnj table {
+<div id="ydmgxgdhsu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ydmgxgdhsu table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#souiycvfnj thead, #souiycvfnj tbody, #souiycvfnj tfoot, #souiycvfnj tr, #souiycvfnj td, #souiycvfnj th {
+#ydmgxgdhsu thead, #ydmgxgdhsu tbody, #ydmgxgdhsu tfoot, #ydmgxgdhsu tr, #ydmgxgdhsu td, #ydmgxgdhsu th {
 border-style: none;
 }
-#souiycvfnj p {
+#ydmgxgdhsu p {
 margin: 0;
 padding: 0;
 }
-#souiycvfnj .gt_table {
+#ydmgxgdhsu .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -3764,11 +3725,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#souiycvfnj .gt_caption {
+#ydmgxgdhsu .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#souiycvfnj .gt_title {
+#ydmgxgdhsu .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -3779,7 +3740,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#souiycvfnj .gt_subtitle {
+#ydmgxgdhsu .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -3790,7 +3751,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#souiycvfnj .gt_heading {
+#ydmgxgdhsu .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -3801,12 +3762,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#souiycvfnj .gt_bottom_border {
+#ydmgxgdhsu .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#souiycvfnj .gt_col_headings {
+#ydmgxgdhsu .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -3820,7 +3781,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#souiycvfnj .gt_col_heading {
+#ydmgxgdhsu .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3839,7 +3800,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#souiycvfnj .gt_column_spanner_outer {
+#ydmgxgdhsu .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3850,13 +3811,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#souiycvfnj .gt_column_spanner_outer:first-child {
+#ydmgxgdhsu .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#souiycvfnj .gt_column_spanner_outer:last-child {
+#ydmgxgdhsu .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#souiycvfnj .gt_column_spanner {
+#ydmgxgdhsu .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -3867,10 +3828,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#souiycvfnj .gt_spanner_row {
+#ydmgxgdhsu .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#souiycvfnj .gt_group_heading {
+#ydmgxgdhsu .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3895,7 +3856,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#souiycvfnj .gt_empty_group_heading {
+#ydmgxgdhsu .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -3909,13 +3870,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#souiycvfnj .gt_from_md > :first-child {
+#ydmgxgdhsu .gt_from_md > :first-child {
 margin-top: 0;
 }
-#souiycvfnj .gt_from_md > :last-child {
+#ydmgxgdhsu .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#souiycvfnj .gt_row {
+#ydmgxgdhsu .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3933,7 +3894,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#souiycvfnj .gt_stub {
+#ydmgxgdhsu .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3945,7 +3906,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#souiycvfnj .gt_stub_row_group {
+#ydmgxgdhsu .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -3958,13 +3919,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#souiycvfnj .gt_row_group_first td {
+#ydmgxgdhsu .gt_row_group_first td {
 border-top-width: 2px;
 }
-#souiycvfnj .gt_row_group_first th {
+#ydmgxgdhsu .gt_row_group_first th {
 border-top-width: 2px;
 }
-#souiycvfnj .gt_summary_row {
+#ydmgxgdhsu .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -3973,14 +3934,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#souiycvfnj .gt_first_summary_row {
+#ydmgxgdhsu .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#souiycvfnj .gt_first_summary_row.thick {
+#ydmgxgdhsu .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#souiycvfnj .gt_last_summary_row {
+#ydmgxgdhsu .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -3989,7 +3950,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#souiycvfnj .gt_grand_summary_row {
+#ydmgxgdhsu .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -3998,7 +3959,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#souiycvfnj .gt_first_grand_summary_row {
+#ydmgxgdhsu .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4007,7 +3968,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#souiycvfnj .gt_last_grand_summary_row_top {
+#ydmgxgdhsu .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -4016,10 +3977,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#souiycvfnj .gt_striped {
+#ydmgxgdhsu .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#souiycvfnj .gt_table_body {
+#ydmgxgdhsu .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -4027,7 +3988,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#souiycvfnj .gt_footnotes {
+#ydmgxgdhsu .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -4040,7 +4001,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#souiycvfnj .gt_footnote {
+#ydmgxgdhsu .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -4048,7 +4009,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#souiycvfnj .gt_sourcenotes {
+#ydmgxgdhsu .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -4061,57 +4022,57 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#souiycvfnj .gt_sourcenote {
+#ydmgxgdhsu .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#souiycvfnj .gt_left {
+#ydmgxgdhsu .gt_left {
 text-align: left;
 }
-#souiycvfnj .gt_center {
+#ydmgxgdhsu .gt_center {
 text-align: center;
 }
-#souiycvfnj .gt_right {
+#ydmgxgdhsu .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#souiycvfnj .gt_font_normal {
+#ydmgxgdhsu .gt_font_normal {
 font-weight: normal;
 }
-#souiycvfnj .gt_font_bold {
+#ydmgxgdhsu .gt_font_bold {
 font-weight: bold;
 }
-#souiycvfnj .gt_font_italic {
+#ydmgxgdhsu .gt_font_italic {
 font-style: italic;
 }
-#souiycvfnj .gt_super {
+#ydmgxgdhsu .gt_super {
 font-size: 65%;
 }
-#souiycvfnj .gt_footnote_marks {
+#ydmgxgdhsu .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#souiycvfnj .gt_asterisk {
+#ydmgxgdhsu .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#souiycvfnj .gt_indent_1 {
+#ydmgxgdhsu .gt_indent_1 {
 text-indent: 5px;
 }
-#souiycvfnj .gt_indent_2 {
+#ydmgxgdhsu .gt_indent_2 {
 text-indent: 10px;
 }
-#souiycvfnj .gt_indent_3 {
+#ydmgxgdhsu .gt_indent_3 {
 text-indent: 15px;
 }
-#souiycvfnj .gt_indent_4 {
+#ydmgxgdhsu .gt_indent_4 {
 text-indent: 20px;
 }
-#souiycvfnj .gt_indent_5 {
+#ydmgxgdhsu .gt_indent_5 {
 text-indent: 25px;
 }
 </style>
@@ -4186,7 +4147,7 @@ text-indent: 25px;
 <td class="gt_row gt_center" headers="p.value">&lt;0.001</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="label" style="font-weight: bold">grade</td>
+<td class="gt_row gt_left" headers="label" style="font-weight: bold">Grade</td>
 <td class="gt_row gt_center" headers="estimate">1.47 (1.43 to 1.52)</td>
 <td class="gt_row gt_center" headers="statistic">27.5</td>
 <td class="gt_row gt_center" headers="p.value">&lt;0.001</td>
@@ -4305,8 +4266,8 @@ clm_lm_alt logit flexible
 clm_lm     logit flexible  
 
            no.par   AIC  logLik LR.stat df Pr(&gt;Chisq)   
-clm_lm_alt     15 18605 -9287.7                         
-clm_lm         16 18600 -9283.9  7.7198  1   0.005462 **
+clm_lm_alt     11 18605 -9291.6                         
+clm_lm         12 18600 -9287.9  7.4317  1   0.006409 **
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
@@ -4351,8 +4312,8 @@ clm_lm_no_inter  logit flexible
 clm_lm_sig_inter logit flexible  
 
                  no.par   AIC  logLik LR.stat df Pr(&gt;Chisq)
-clm_lm_no_inter      12 18600 -9287.9                      
-clm_lm_sig_inter     13 18602 -9287.9  0.0077  1       0.93</code></pre>
+clm_lm_no_inter       8 18600 -9291.8                      
+clm_lm_sig_inter      9 18602 -9291.8  0.0099  1     0.9207</code></pre>
 </div>
 </div>
 </section></section><section id="stratified-analysis-to-explore-interaction-effect-by-recreating-the-model-for-each-gender-category" class="level2"><h2 class="anchored" data-anchor-id="stratified-analysis-to-explore-interaction-effect-by-recreating-the-model-for-each-gender-category">Stratified Analysis to explore interaction effect by recreating the model for each gender category</h2>
@@ -4375,26 +4336,22 @@ data:
 ordinalRegres_substanceUse[ordinalRegres_substanceUse$gender == &quot;Male&quot;, ]
 
  link  threshold nobs  logLik   AIC     niter max.grad cond.H 
- logit flexible  17969 -4856.52 9735.03 7(0)  1.59e-12 1.7e+04
+ logit flexible  17969 -4857.70 9729.40 6(0)  3.65e-07 2.7e+04
 
 Coefficients:
                Estimate Std. Error z value Pr(&gt;|z|)    
-adult_ssYes   -0.856591   0.107673  -7.955 1.78e-15 ***
-peer_ssYes     0.268250   0.091825   2.921 0.003485 ** 
-teacher_ssYes -0.240532   0.062623  -3.841 0.000123 ***
-ptsd_total     0.085306   0.003878  21.998  &lt; 2e-16 ***
-gradeGrade 8   0.240675   0.149598   1.609 0.107656    
-gradeGrade 9   0.781073   0.139850   5.585 2.34e-08 ***
-gradeGrade 10  1.128994   0.132325   8.532  &lt; 2e-16 ***
-gradeGrade 11  1.499001   0.126581  11.842  &lt; 2e-16 ***
-gradeGrade 12  1.977339   0.124107  15.933  &lt; 2e-16 ***
+adult_ssYes   -0.855355   0.107664  -7.945 1.95e-15 ***
+peer_ssYes     0.265738   0.091771   2.896 0.003784 ** 
+teacher_ssYes -0.239755   0.062510  -3.835 0.000125 ***
+ptsd_total     0.085324   0.003874  22.025  &lt; 2e-16 ***
+grade          0.405034   0.019377  20.903  &lt; 2e-16 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
 Threshold coefficients:
          Estimate Std. Error z value
-None|Low   3.6531     0.1565   23.34
-Low|High   4.8978     0.1622   30.20</code></pre>
+None|Low   6.5656     0.2265   28.98
+Low|High   7.8100     0.2315   33.74</code></pre>
 </div>
 <details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model_female</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output cell-output-stdout">
@@ -4403,32 +4360,39 @@ data:
 ordinalRegres_substanceUse[ordinalRegres_substanceUse$gender == &quot;Female&quot;, ]
 
  link  threshold nobs  logLik   AIC     niter max.grad cond.H 
- logit flexible  18516 -4411.02 8844.05 7(0)  1.13e-10 3.3e+04
+ logit flexible  18516 -4415.85 8845.71 7(0)  8.06e-13 4.1e+04
 
 Coefficients:
                Estimate Std. Error z value Pr(&gt;|z|)    
-adult_ssYes   -0.895009   0.107235  -8.346  &lt; 2e-16 ***
-peer_ssYes     0.240148   0.106976   2.245   0.0248 *  
-teacher_ssYes -0.287535   0.065326  -4.402 1.07e-05 ***
-ptsd_total     0.072111   0.003688  19.551  &lt; 2e-16 ***
-gradeGrade 8   0.490145   0.169360   2.894   0.0038 ** 
-gradeGrade 9   1.077791   0.156411   6.891 5.55e-12 ***
-gradeGrade 10  1.230523   0.152396   8.075 6.77e-16 ***
-gradeGrade 11  1.508558   0.147973  10.195  &lt; 2e-16 ***
-gradeGrade 12  2.015195   0.144167  13.978  &lt; 2e-16 ***
+adult_ssYes   -0.894493   0.107156  -8.348  &lt; 2e-16 ***
+peer_ssYes     0.239199   0.106957   2.236   0.0253 *  
+teacher_ssYes -0.292436   0.065182  -4.486 7.24e-06 ***
+ptsd_total     0.072182   0.003688  19.572  &lt; 2e-16 ***
+grade          0.367453   0.020466  17.955  &lt; 2e-16 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
 Threshold coefficients:
          Estimate Std. Error z value
-None|Low   3.9363     0.1868   21.08
-Low|High   5.5436     0.1951   28.42</code></pre>
+None|Low   6.3645     0.2494   25.52
+Low|High   7.9709     0.2566   31.07</code></pre>
 </div>
 </div>
 </section></section><section id="descriptive-stats-tables" class="level1"><h1>Descriptive stats tables</h1>
 <section id="all-possible-participants-in-grades-7-12" class="level2"><h2 class="anchored" data-anchor-id="all-possible-participants-in-grades-7-12">All possible participants in grades 7-12</h2>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># substanceUse: Check for NA values and convert them to an explicit factor level</span></span>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Turn grade into a factor in youth_substanceUse data</span></span>
+<span><span class="va">youth_substanceUse</span><span class="op">$</span><span class="va">grade</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">youth_substanceUse</span><span class="op">$</span><span class="va">grade</span>,</span>
+<span>                                      labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>                                        <span class="st">&quot;Grade 7&quot;</span>,</span>
+<span>                                        <span class="st">&quot;Grade 8&quot;</span>, </span>
+<span>                                        <span class="st">&quot;Grade 9&quot;</span>,</span>
+<span>                                        <span class="st">&quot;Grade 10&quot;</span>,</span>
+<span>                                        <span class="st">&quot;Grade 11&quot;</span>,</span>
+<span>                                        <span class="st">&quot;Grade 12&quot;</span></span>
+<span>                                        <span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># substanceUse: Check for NA values and convert them to an explicit factor level</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">youth_substanceUse</span><span class="op">$</span><span class="va">substanceUse</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">youth_substanceUse</span><span class="op">$</span><span class="va">substanceUse</span> <span class="op">&lt;-</span> <span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_explicit_na.html">fct_explicit_na</a></span><span class="op">(</span><span class="va">youth_substanceUse</span><span class="op">$</span><span class="va">substanceUse</span>, na_level <span class="op">=</span> <span class="st">&quot;Missing&quot;</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
@@ -4485,20 +4449,20 @@ Low|High   5.5436     0.1951   28.42</code></pre>
 <span><span class="va">tbl_summary_all</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
-<div id="ysuixrsmji" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ysuixrsmji table {
+<div id="uflemrjlxp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#uflemrjlxp table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#ysuixrsmji thead, #ysuixrsmji tbody, #ysuixrsmji tfoot, #ysuixrsmji tr, #ysuixrsmji td, #ysuixrsmji th {
+#uflemrjlxp thead, #uflemrjlxp tbody, #uflemrjlxp tfoot, #uflemrjlxp tr, #uflemrjlxp td, #uflemrjlxp th {
 border-style: none;
 }
-#ysuixrsmji p {
+#uflemrjlxp p {
 margin: 0;
 padding: 0;
 }
-#ysuixrsmji .gt_table {
+#uflemrjlxp .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -4523,11 +4487,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#ysuixrsmji .gt_caption {
+#uflemrjlxp .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#ysuixrsmji .gt_title {
+#uflemrjlxp .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -4538,7 +4502,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#ysuixrsmji .gt_subtitle {
+#uflemrjlxp .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -4549,7 +4513,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#ysuixrsmji .gt_heading {
+#uflemrjlxp .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -4560,12 +4524,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#ysuixrsmji .gt_bottom_border {
+#uflemrjlxp .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#ysuixrsmji .gt_col_headings {
+#uflemrjlxp .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -4579,7 +4543,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#ysuixrsmji .gt_col_heading {
+#uflemrjlxp .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4598,7 +4562,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#ysuixrsmji .gt_column_spanner_outer {
+#uflemrjlxp .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4609,13 +4573,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#ysuixrsmji .gt_column_spanner_outer:first-child {
+#uflemrjlxp .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#ysuixrsmji .gt_column_spanner_outer:last-child {
+#uflemrjlxp .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#ysuixrsmji .gt_column_spanner {
+#uflemrjlxp .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -4626,10 +4590,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#ysuixrsmji .gt_spanner_row {
+#uflemrjlxp .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#ysuixrsmji .gt_group_heading {
+#uflemrjlxp .gt_group_heading {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -4654,7 +4618,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#ysuixrsmji .gt_empty_group_heading {
+#uflemrjlxp .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -4668,13 +4632,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#ysuixrsmji .gt_from_md > :first-child {
+#uflemrjlxp .gt_from_md > :first-child {
 margin-top: 0;
 }
-#ysuixrsmji .gt_from_md > :last-child {
+#uflemrjlxp .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#ysuixrsmji .gt_row {
+#uflemrjlxp .gt_row {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -4692,7 +4656,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#ysuixrsmji .gt_stub {
+#uflemrjlxp .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4704,7 +4668,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ysuixrsmji .gt_stub_row_group {
+#uflemrjlxp .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -4717,13 +4681,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#ysuixrsmji .gt_row_group_first td {
+#uflemrjlxp .gt_row_group_first td {
 border-top-width: 2px;
 }
-#ysuixrsmji .gt_row_group_first th {
+#uflemrjlxp .gt_row_group_first th {
 border-top-width: 2px;
 }
-#ysuixrsmji .gt_summary_row {
+#uflemrjlxp .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -4732,14 +4696,14 @@ padding-bottom: 1px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ysuixrsmji .gt_first_summary_row {
+#uflemrjlxp .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#ysuixrsmji .gt_first_summary_row.thick {
+#uflemrjlxp .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#ysuixrsmji .gt_last_summary_row {
+#uflemrjlxp .gt_last_summary_row {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -4748,7 +4712,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#ysuixrsmji .gt_grand_summary_row {
+#uflemrjlxp .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -4757,7 +4721,7 @@ padding-bottom: 1px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ysuixrsmji .gt_first_grand_summary_row {
+#uflemrjlxp .gt_first_grand_summary_row {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -4766,7 +4730,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#ysuixrsmji .gt_last_grand_summary_row_top {
+#uflemrjlxp .gt_last_grand_summary_row_top {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -4775,10 +4739,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#ysuixrsmji .gt_striped {
+#uflemrjlxp .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#ysuixrsmji .gt_table_body {
+#uflemrjlxp .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -4786,7 +4750,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#ysuixrsmji .gt_footnotes {
+#uflemrjlxp .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -4799,7 +4763,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#ysuixrsmji .gt_footnote {
+#uflemrjlxp .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 1px;
@@ -4807,7 +4771,7 @@ padding-bottom: 1px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ysuixrsmji .gt_sourcenotes {
+#uflemrjlxp .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -4820,57 +4784,57 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#ysuixrsmji .gt_sourcenote {
+#uflemrjlxp .gt_sourcenote {
 font-size: 90%;
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ysuixrsmji .gt_left {
+#uflemrjlxp .gt_left {
 text-align: left;
 }
-#ysuixrsmji .gt_center {
+#uflemrjlxp .gt_center {
 text-align: center;
 }
-#ysuixrsmji .gt_right {
+#uflemrjlxp .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#ysuixrsmji .gt_font_normal {
+#uflemrjlxp .gt_font_normal {
 font-weight: normal;
 }
-#ysuixrsmji .gt_font_bold {
+#uflemrjlxp .gt_font_bold {
 font-weight: bold;
 }
-#ysuixrsmji .gt_font_italic {
+#uflemrjlxp .gt_font_italic {
 font-style: italic;
 }
-#ysuixrsmji .gt_super {
+#uflemrjlxp .gt_super {
 font-size: 65%;
 }
-#ysuixrsmji .gt_footnote_marks {
+#uflemrjlxp .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#ysuixrsmji .gt_asterisk {
+#uflemrjlxp .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#ysuixrsmji .gt_indent_1 {
+#uflemrjlxp .gt_indent_1 {
 text-indent: 5px;
 }
-#ysuixrsmji .gt_indent_2 {
+#uflemrjlxp .gt_indent_2 {
 text-indent: 10px;
 }
-#ysuixrsmji .gt_indent_3 {
+#uflemrjlxp .gt_indent_3 {
 text-indent: 15px;
 }
-#ysuixrsmji .gt_indent_4 {
+#uflemrjlxp .gt_indent_4 {
 text-indent: 20px;
 }
-#ysuixrsmji .gt_indent_5 {
+#uflemrjlxp .gt_indent_5 {
 text-indent: 25px;
 }
 </style>
@@ -5242,7 +5206,18 @@ text-indent: 25px;
 </div>
 </section><section id="excluded-participants-due-to-missing-data" class="level2"><h2 class="anchored" data-anchor-id="excluded-participants-due-to-missing-data">Excluded participants due to missing data</h2>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># substanceUse: Check for NA values and convert them to an explicit factor level</span></span>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Turn grade into a factor </span></span>
+<span><span class="va">dropped_youth_substanceUse</span><span class="op">$</span><span class="va">grade</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">dropped_youth_substanceUse</span><span class="op">$</span><span class="va">grade</span>,</span>
+<span>                                      labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>                                        <span class="st">&quot;Grade 7&quot;</span>,</span>
+<span>                                        <span class="st">&quot;Grade 8&quot;</span>, </span>
+<span>                                        <span class="st">&quot;Grade 9&quot;</span>,</span>
+<span>                                        <span class="st">&quot;Grade 10&quot;</span>,</span>
+<span>                                        <span class="st">&quot;Grade 11&quot;</span>,</span>
+<span>                                        <span class="st">&quot;Grade 12&quot;</span></span>
+<span>                                        <span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># substanceUse: Check for NA values and convert them to an explicit factor level</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">dropped_youth_substanceUse</span><span class="op">$</span><span class="va">substanceUse</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">dropped_youth_substanceUse</span><span class="op">$</span><span class="va">substanceUse</span> <span class="op">&lt;-</span> <span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_explicit_na.html">fct_explicit_na</a></span><span class="op">(</span><span class="va">dropped_youth_substanceUse</span><span class="op">$</span><span class="va">substanceUse</span>, na_level <span class="op">=</span> <span class="st">&quot;Missing&quot;</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
@@ -5303,20 +5278,20 @@ text-indent: 25px;
 <span><span class="va">tbl_summary_excluded</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
-<div id="cvmxdhstnv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#cvmxdhstnv table {
+<div id="plqdioaaky" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#plqdioaaky table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#cvmxdhstnv thead, #cvmxdhstnv tbody, #cvmxdhstnv tfoot, #cvmxdhstnv tr, #cvmxdhstnv td, #cvmxdhstnv th {
+#plqdioaaky thead, #plqdioaaky tbody, #plqdioaaky tfoot, #plqdioaaky tr, #plqdioaaky td, #plqdioaaky th {
 border-style: none;
 }
-#cvmxdhstnv p {
+#plqdioaaky p {
 margin: 0;
 padding: 0;
 }
-#cvmxdhstnv .gt_table {
+#plqdioaaky .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -5341,11 +5316,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#cvmxdhstnv .gt_caption {
+#plqdioaaky .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#cvmxdhstnv .gt_title {
+#plqdioaaky .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -5356,7 +5331,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#cvmxdhstnv .gt_subtitle {
+#plqdioaaky .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -5367,7 +5342,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#cvmxdhstnv .gt_heading {
+#plqdioaaky .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -5378,12 +5353,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#cvmxdhstnv .gt_bottom_border {
+#plqdioaaky .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#cvmxdhstnv .gt_col_headings {
+#plqdioaaky .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -5397,7 +5372,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#cvmxdhstnv .gt_col_heading {
+#plqdioaaky .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -5416,7 +5391,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#cvmxdhstnv .gt_column_spanner_outer {
+#plqdioaaky .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -5427,13 +5402,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#cvmxdhstnv .gt_column_spanner_outer:first-child {
+#plqdioaaky .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#cvmxdhstnv .gt_column_spanner_outer:last-child {
+#plqdioaaky .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#cvmxdhstnv .gt_column_spanner {
+#plqdioaaky .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -5444,10 +5419,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#cvmxdhstnv .gt_spanner_row {
+#plqdioaaky .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#cvmxdhstnv .gt_group_heading {
+#plqdioaaky .gt_group_heading {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -5472,7 +5447,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#cvmxdhstnv .gt_empty_group_heading {
+#plqdioaaky .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -5486,13 +5461,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#cvmxdhstnv .gt_from_md > :first-child {
+#plqdioaaky .gt_from_md > :first-child {
 margin-top: 0;
 }
-#cvmxdhstnv .gt_from_md > :last-child {
+#plqdioaaky .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#cvmxdhstnv .gt_row {
+#plqdioaaky .gt_row {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -5510,7 +5485,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#cvmxdhstnv .gt_stub {
+#plqdioaaky .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -5522,7 +5497,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#cvmxdhstnv .gt_stub_row_group {
+#plqdioaaky .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -5535,13 +5510,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#cvmxdhstnv .gt_row_group_first td {
+#plqdioaaky .gt_row_group_first td {
 border-top-width: 2px;
 }
-#cvmxdhstnv .gt_row_group_first th {
+#plqdioaaky .gt_row_group_first th {
 border-top-width: 2px;
 }
-#cvmxdhstnv .gt_summary_row {
+#plqdioaaky .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -5550,14 +5525,14 @@ padding-bottom: 1px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#cvmxdhstnv .gt_first_summary_row {
+#plqdioaaky .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#cvmxdhstnv .gt_first_summary_row.thick {
+#plqdioaaky .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#cvmxdhstnv .gt_last_summary_row {
+#plqdioaaky .gt_last_summary_row {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -5566,7 +5541,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#cvmxdhstnv .gt_grand_summary_row {
+#plqdioaaky .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -5575,7 +5550,7 @@ padding-bottom: 1px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#cvmxdhstnv .gt_first_grand_summary_row {
+#plqdioaaky .gt_first_grand_summary_row {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -5584,7 +5559,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#cvmxdhstnv .gt_last_grand_summary_row_top {
+#plqdioaaky .gt_last_grand_summary_row_top {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -5593,10 +5568,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#cvmxdhstnv .gt_striped {
+#plqdioaaky .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#cvmxdhstnv .gt_table_body {
+#plqdioaaky .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -5604,7 +5579,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#cvmxdhstnv .gt_footnotes {
+#plqdioaaky .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -5617,7 +5592,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#cvmxdhstnv .gt_footnote {
+#plqdioaaky .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 1px;
@@ -5625,7 +5600,7 @@ padding-bottom: 1px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#cvmxdhstnv .gt_sourcenotes {
+#plqdioaaky .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -5638,57 +5613,57 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#cvmxdhstnv .gt_sourcenote {
+#plqdioaaky .gt_sourcenote {
 font-size: 90%;
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#cvmxdhstnv .gt_left {
+#plqdioaaky .gt_left {
 text-align: left;
 }
-#cvmxdhstnv .gt_center {
+#plqdioaaky .gt_center {
 text-align: center;
 }
-#cvmxdhstnv .gt_right {
+#plqdioaaky .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#cvmxdhstnv .gt_font_normal {
+#plqdioaaky .gt_font_normal {
 font-weight: normal;
 }
-#cvmxdhstnv .gt_font_bold {
+#plqdioaaky .gt_font_bold {
 font-weight: bold;
 }
-#cvmxdhstnv .gt_font_italic {
+#plqdioaaky .gt_font_italic {
 font-style: italic;
 }
-#cvmxdhstnv .gt_super {
+#plqdioaaky .gt_super {
 font-size: 65%;
 }
-#cvmxdhstnv .gt_footnote_marks {
+#plqdioaaky .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#cvmxdhstnv .gt_asterisk {
+#plqdioaaky .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#cvmxdhstnv .gt_indent_1 {
+#plqdioaaky .gt_indent_1 {
 text-indent: 5px;
 }
-#cvmxdhstnv .gt_indent_2 {
+#plqdioaaky .gt_indent_2 {
 text-indent: 10px;
 }
-#cvmxdhstnv .gt_indent_3 {
+#plqdioaaky .gt_indent_3 {
 text-indent: 15px;
 }
-#cvmxdhstnv .gt_indent_4 {
+#plqdioaaky .gt_indent_4 {
 text-indent: 20px;
 }
-#cvmxdhstnv .gt_indent_5 {
+#plqdioaaky .gt_indent_5 {
 text-indent: 25px;
 }
 </style>
@@ -6055,7 +6030,18 @@ text-indent: 25px;
 </div>
 </section><section id="current-sample-for-ordinal-regression" class="level2"><h2 class="anchored" data-anchor-id="current-sample-for-ordinal-regression">Current sample for ordinal regression</h2>
 <div class="cell">
-<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># substanceUse: Check for NA values and convert them to an explicit factor level</span></span>
+<details class="code-fold"><summary>Code</summary><div class="sourceCode" id="cb48"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Turn grade into a factor </span></span>
+<span><span class="va">ordinalRegres_substanceUse</span><span class="op">$</span><span class="va">grade</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">ordinalRegres_substanceUse</span><span class="op">$</span><span class="va">grade</span>,</span>
+<span>                                      labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span></span>
+<span>                                        <span class="st">&quot;Grade 7&quot;</span>,</span>
+<span>                                        <span class="st">&quot;Grade 8&quot;</span>, </span>
+<span>                                        <span class="st">&quot;Grade 9&quot;</span>,</span>
+<span>                                        <span class="st">&quot;Grade 10&quot;</span>,</span>
+<span>                                        <span class="st">&quot;Grade 11&quot;</span>,</span>
+<span>                                        <span class="st">&quot;Grade 12&quot;</span></span>
+<span>                                        <span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># substanceUse: Check for NA values and convert them to an explicit factor level</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">ordinalRegres_substanceUse</span><span class="op">$</span><span class="va">substanceUse</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">ordinalRegres_substanceUse</span><span class="op">$</span><span class="va">substanceUse</span> <span class="op">&lt;-</span> <span class="fu">forcats</span><span class="fu">::</span><span class="fu"><a href="https://forcats.tidyverse.org/reference/fct_na_value_to_level.html">fct_na_value_to_level</a></span><span class="op">(</span><span class="va">ordinalRegres_substanceUse</span><span class="op">$</span><span class="va">substanceUse</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
@@ -6116,20 +6102,20 @@ text-indent: 25px;
 <span><span class="va">table_included</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details><div class="cell-output-display">
 <div>
-<div id="awgssvlyrw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#awgssvlyrw table {
+<div id="gjxakeffnn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gjxakeffnn table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#awgssvlyrw thead, #awgssvlyrw tbody, #awgssvlyrw tfoot, #awgssvlyrw tr, #awgssvlyrw td, #awgssvlyrw th {
+#gjxakeffnn thead, #gjxakeffnn tbody, #gjxakeffnn tfoot, #gjxakeffnn tr, #gjxakeffnn td, #gjxakeffnn th {
 border-style: none;
 }
-#awgssvlyrw p {
+#gjxakeffnn p {
 margin: 0;
 padding: 0;
 }
-#awgssvlyrw .gt_table {
+#gjxakeffnn .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -6154,11 +6140,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#awgssvlyrw .gt_caption {
+#gjxakeffnn .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#awgssvlyrw .gt_title {
+#gjxakeffnn .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -6169,7 +6155,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#awgssvlyrw .gt_subtitle {
+#gjxakeffnn .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -6180,7 +6166,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#awgssvlyrw .gt_heading {
+#gjxakeffnn .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -6191,12 +6177,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#awgssvlyrw .gt_bottom_border {
+#gjxakeffnn .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#awgssvlyrw .gt_col_headings {
+#gjxakeffnn .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -6210,7 +6196,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#awgssvlyrw .gt_col_heading {
+#gjxakeffnn .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -6229,7 +6215,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#awgssvlyrw .gt_column_spanner_outer {
+#gjxakeffnn .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -6240,13 +6226,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#awgssvlyrw .gt_column_spanner_outer:first-child {
+#gjxakeffnn .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#awgssvlyrw .gt_column_spanner_outer:last-child {
+#gjxakeffnn .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#awgssvlyrw .gt_column_spanner {
+#gjxakeffnn .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -6257,10 +6243,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#awgssvlyrw .gt_spanner_row {
+#gjxakeffnn .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#awgssvlyrw .gt_group_heading {
+#gjxakeffnn .gt_group_heading {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -6285,7 +6271,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#awgssvlyrw .gt_empty_group_heading {
+#gjxakeffnn .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -6299,13 +6285,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#awgssvlyrw .gt_from_md > :first-child {
+#gjxakeffnn .gt_from_md > :first-child {
 margin-top: 0;
 }
-#awgssvlyrw .gt_from_md > :last-child {
+#gjxakeffnn .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#awgssvlyrw .gt_row {
+#gjxakeffnn .gt_row {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -6323,7 +6309,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#awgssvlyrw .gt_stub {
+#gjxakeffnn .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -6335,7 +6321,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#awgssvlyrw .gt_stub_row_group {
+#gjxakeffnn .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -6348,13 +6334,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#awgssvlyrw .gt_row_group_first td {
+#gjxakeffnn .gt_row_group_first td {
 border-top-width: 2px;
 }
-#awgssvlyrw .gt_row_group_first th {
+#gjxakeffnn .gt_row_group_first th {
 border-top-width: 2px;
 }
-#awgssvlyrw .gt_summary_row {
+#gjxakeffnn .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -6363,14 +6349,14 @@ padding-bottom: 1px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#awgssvlyrw .gt_first_summary_row {
+#gjxakeffnn .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#awgssvlyrw .gt_first_summary_row.thick {
+#gjxakeffnn .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#awgssvlyrw .gt_last_summary_row {
+#gjxakeffnn .gt_last_summary_row {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -6379,7 +6365,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#awgssvlyrw .gt_grand_summary_row {
+#gjxakeffnn .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -6388,7 +6374,7 @@ padding-bottom: 1px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#awgssvlyrw .gt_first_grand_summary_row {
+#gjxakeffnn .gt_first_grand_summary_row {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -6397,7 +6383,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#awgssvlyrw .gt_last_grand_summary_row_top {
+#gjxakeffnn .gt_last_grand_summary_row_top {
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
@@ -6406,10 +6392,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#awgssvlyrw .gt_striped {
+#gjxakeffnn .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#awgssvlyrw .gt_table_body {
+#gjxakeffnn .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -6417,7 +6403,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#awgssvlyrw .gt_footnotes {
+#gjxakeffnn .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -6430,7 +6416,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#awgssvlyrw .gt_footnote {
+#gjxakeffnn .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 1px;
@@ -6438,7 +6424,7 @@ padding-bottom: 1px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#awgssvlyrw .gt_sourcenotes {
+#gjxakeffnn .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -6451,57 +6437,57 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#awgssvlyrw .gt_sourcenote {
+#gjxakeffnn .gt_sourcenote {
 font-size: 90%;
 padding-top: 1px;
 padding-bottom: 1px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#awgssvlyrw .gt_left {
+#gjxakeffnn .gt_left {
 text-align: left;
 }
-#awgssvlyrw .gt_center {
+#gjxakeffnn .gt_center {
 text-align: center;
 }
-#awgssvlyrw .gt_right {
+#gjxakeffnn .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#awgssvlyrw .gt_font_normal {
+#gjxakeffnn .gt_font_normal {
 font-weight: normal;
 }
-#awgssvlyrw .gt_font_bold {
+#gjxakeffnn .gt_font_bold {
 font-weight: bold;
 }
-#awgssvlyrw .gt_font_italic {
+#gjxakeffnn .gt_font_italic {
 font-style: italic;
 }
-#awgssvlyrw .gt_super {
+#gjxakeffnn .gt_super {
 font-size: 65%;
 }
-#awgssvlyrw .gt_footnote_marks {
+#gjxakeffnn .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#awgssvlyrw .gt_asterisk {
+#gjxakeffnn .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#awgssvlyrw .gt_indent_1 {
+#gjxakeffnn .gt_indent_1 {
 text-indent: 5px;
 }
-#awgssvlyrw .gt_indent_2 {
+#gjxakeffnn .gt_indent_2 {
 text-indent: 10px;
 }
-#awgssvlyrw .gt_indent_3 {
+#gjxakeffnn .gt_indent_3 {
 text-indent: 15px;
 }
-#awgssvlyrw .gt_indent_4 {
+#gjxakeffnn .gt_indent_4 {
 text-indent: 20px;
 }
-#awgssvlyrw .gt_indent_5 {
+#gjxakeffnn .gt_indent_5 {
 text-indent: 25px;
 }
 </style>
