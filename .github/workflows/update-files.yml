@@ -26,5 +26,6 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add *.html
-          git commit -m "Fetch HTML" || echo "No changes to commit"
+          git add *.docx
+          git commit -m "Update files" || echo "No changes to commit"
           git push
