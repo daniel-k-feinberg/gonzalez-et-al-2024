@@ -19,7 +19,10 @@ jobs:
           token: ${{ secrets.SUBMODULE_TOKEN }}
 
       - name: Update submodule & cp html
-        run: git submodule update --init --recursive --remote && cp -f ./internal-files/output/src/manuscript-gonzalez-et-al-2024.html ./gonzalez-et-al-2024.html
+        run: |
+          git submodule update --init --recursive --remote
+          cp -f ./internal-files/output/src/manuscript-gonzalez-et-al-2024.html ./gonzalez-et-al-2024.html
+          cp -f ./internal-files/output/src/manuscript-gonzalez-et-al-2024.docx ./gonzalez-et-al-2024.docx
 
       - name: Commit and push changes
         run: |
