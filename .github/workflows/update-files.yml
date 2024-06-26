@@ -6,7 +6,7 @@ on:
 #   branches:
 #     - main
 
-name: Fetch HTML
+name: Update files
 
 jobs:
   fetch-html:
