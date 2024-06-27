@@ -2,13 +2,13 @@
 
 ## Risk and Protective Factors Related to Substance Use Among Puerto Rican Youths After Hurricane María (Gonzalez et al., 2024)
 
-Hello! In this repository you will find an HTML file and word document containing the R code and output for our manuscript (currently under review). I hope that by sharing this work, I can help clarify questions readers may have about the statistical methods utilized in our study. Additionally, I hope that sharing this code will make this work useful to others who may be conducting similar analyses.
+Hello! In this repository you will find an HTML file and word document containing the R code and output for our manuscript (currently under review). I hope that by sharing this work, I can help clarify questions readers may have about the statistical methods utilized in our study. Additionally, I hope that sharing this code will make it useful to others who may be conducting similar analyses.
 
 *To view the code and output, please download the HTML file linked below and open it in a web browser (e.g., Chrome, Firefox, Safari):*
 
 - [📄 HTML](https://github.com/daniel-k-feinberg/gonzalez-et-al-2024/blob/main/gonzalez-et-al-2024.html)
 
-*If Microsoft Word is preferred, please download the .docx file linked below*
+*If Microsoft Word is preferred, please download the DOCX file linked below:*
 
 - [📎 MS Word](https://github.com/daniel-k-feinberg/gonzalez-et-al-2024/blob/main/gonzalez-et-al-2024.docx)
 
@@ -23,7 +23,7 @@ Juan Carlos Gonzalez, Ph.D. <sup>1</sup>, Daniel K. Feinberg, M.Ed.<sup>2</sup>,
 
 ## Please Note
 
-Due to confidentiality requirements, I cannot share the dataset on which my analyses were performed. However, please feel free to email me at `dfeinberg@ucsb.edu` if you have any questions about my analyses and how they may apply to your situation.
+Due to confidentiality requirements, I cannot share the dataset on which the present analyses were performed. However, please feel free to email me at `dfeinberg@ucsb.edu` if you have any questions about my analyses and how they may apply to your work. Additionally, if you notice errors in my work, I would really appreciate your feedback.
 
 ## Acknowledgements
 
