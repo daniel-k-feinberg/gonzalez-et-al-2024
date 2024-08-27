@@ -1,0 +1,3 @@
+[submodule "internal-files"]
+	path = internal-files
+	url = https://github.com/daniel-k-feinberg/INTERNAL-gonzalez-et-al-2024.git
