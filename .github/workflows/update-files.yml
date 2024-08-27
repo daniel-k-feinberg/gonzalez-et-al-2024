@@ -1,0 +1,34 @@
+on:
+  schedule:
+    - cron:  '0 12 * * *'
+  workflow_dispatch:
+#  push:
+#   branches:
+#     - main
+
+name: Update files
+
+jobs:
+  fetch-html:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository with submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+          token: ${{ secrets.SUBMODULE_TOKEN }}
+
+      - name: Update submodule & cp html
+        run: |
+          git submodule update --init --recursive --remote
+          cp -f ./internal-files/output/src/manuscript-gonzalez-et-al-2024.html ./gonzalez-et-al-2024.html
+          cp -f ./internal-files/output/src/manuscript-gonzalez-et-al-2024.docx ./gonzalez-et-al-2024.docx
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add *.html
+          git add *.docx
+          git commit -m "Update files" || echo "No changes to commit"
+          git push
